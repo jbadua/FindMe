@@ -36,6 +36,12 @@
                   context:NULL];
 
     self.view = mapView_;
+    mapView_.delegate = self;
+    
+    // Adds padding to move compassButton into the display
+    // TODO: Change 100.0 top padding to a scaled number based on the view
+    UIEdgeInsets mapInsets = UIEdgeInsetsMake(100.0, 0.0, 0.0, 0.0);
+    mapView_.padding = mapInsets;
 
     // Ask for My Location data after the map has already been added to the UI.
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -62,7 +68,27 @@
         CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
         mapView_.camera = [GMSCameraPosition cameraWithTarget:location.coordinate
                                                          zoom:14];
+        // Place marker at my location for testing
+        GMSMarker *marker = [[GMSMarker alloc] init];
+        marker.position = mapView_.myLocation.coordinate;
+        marker.title = @"Photo";
+        marker.snippet = @"1234567890";
+        marker.map = mapView_;
     }
+}
+
+#pragma mark - GMSMapViewDelegate Methods
+
+- (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
+    // Photos have a photo as it's title
+    if ([marker.title isEqualToString:@"Photo"]) {
+        // Photos have the photo name as the snippet
+        NSLog(@"%@", marker.snippet);
+        return YES;
+    } else {
+        return NO;
+    }
+    
 }
 
 @end
