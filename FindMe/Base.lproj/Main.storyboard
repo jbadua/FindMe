@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Njk-PJ-HwF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Njk-PJ-HwF">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -33,7 +33,7 @@
         <!--Add Marker-->
         <scene sceneID="Dph-P1-hwp">
             <objects>
-                <viewController id="hCS-7B-cfl" userLabel="Add Marker" sceneMemberID="viewController">
+                <viewController id="hCS-7B-cfl" userLabel="Add Marker" customClass="AddMarkerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L3G-JL-ySF"/>
                         <viewControllerLayoutGuide type="bottom" id="W1w-uP-2fx"/>
@@ -42,25 +42,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eve-yR-tLp">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eve-yR-tLp">
                                 <rect key="frame" x="16" y="285" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qa0-Ba-F22">
+                                <rect key="frame" x="250" y="72" width="101" height="29"/>
+                                <segments>
+                                    <segment title="Text"/>
+                                    <segment title="Photo"/>
+                                </segments>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U0a-RJ-g2g">
+                                <rect key="frame" x="550" y="550" width="34" height="30"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="X0j-AB-rgo" kind="unwind" unwindAction="addNewMarker:" id="rji-r4-lXs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="eve-yR-tLp" secondAttribute="centerY" id="12b-me-ru2"/>
+                            <constraint firstAttribute="centerX" secondItem="qa0-Ba-F22" secondAttribute="centerX" constant="-0.5" id="8Ex-mr-HQR"/>
                             <constraint firstAttribute="centerX" secondItem="eve-yR-tLp" secondAttribute="centerX" id="HTU-UJ-cEo"/>
+                            <constraint firstItem="W1w-uP-2fx" firstAttribute="top" secondItem="U0a-RJ-g2g" secondAttribute="bottom" constant="20" id="Pcs-NK-pJt"/>
+                            <constraint firstItem="U0a-RJ-g2g" firstAttribute="trailing" secondItem="pSc-wt-TEB" secondAttribute="trailingMargin" id="UVI-Bx-JbG"/>
                             <constraint firstItem="eve-yR-tLp" firstAttribute="trailing" secondItem="pSc-wt-TEB" secondAttribute="trailingMargin" id="Znu-Cp-dLl"/>
+                            <constraint firstItem="qa0-Ba-F22" firstAttribute="top" secondItem="L3G-JL-ySF" secondAttribute="bottom" constant="8" id="kkv-kU-eff"/>
                             <constraint firstItem="eve-yR-tLp" firstAttribute="leading" secondItem="pSc-wt-TEB" secondAttribute="leadingMargin" id="pbv-cC-Qb0"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Text" id="bCv-Le-PSe"/>
+                    <connections>
+                        <outlet property="markerTitle" destination="eve-yR-tLp" id="5xe-e7-ghu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PaM-Wj-VmZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="X0j-AB-rgo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1880" y="-204"/>
+            <point key="canvasLocation" x="-1882" y="-204"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4ke-ol-iyi">
