@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MapViewController.h
 //  FindMe
 //
 //  Created by Jason Badua on 4/20/15.

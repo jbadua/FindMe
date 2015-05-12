@@ -1,5 +1,5 @@
 //
-//  ViewController.m
+//  MapViewController.m
 //  FindMe
 //
 //  Created by Jason Badua on 4/20/15.
@@ -65,6 +65,7 @@
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = mapView_.myLocation.coordinate;
     marker.title = sourceViewController.markerTitle.text;
+    marker.snippet = sourceViewController.markerSnippet.text;
     marker.map = mapView_;
     
     /* TODO: Add Parse Code to save textMarker

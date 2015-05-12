@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddMarkerViewController : UIViewController
+@interface AddMarkerViewController : UIViewController <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *markerTitle;
+@property (weak, nonatomic) IBOutlet UITextView *markerSnippet;
 
 @end
