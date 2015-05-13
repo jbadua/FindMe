@@ -16,12 +16,20 @@
 
 - (void)viewDidLoad {
     // Adds border to markerSnippet text view
+    UIColor *borderColor = [UIColor colorWithRed:204.0/255.0
+                                           green:204.0/255.0
+                                            blue:204.0/255.0
+                                           alpha:1.0];
     self.markerSnippet.layer.borderWidth = 0.5f;
-    self.markerSnippet.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.markerSnippet.layer.borderColor = [borderColor CGColor];
     self.markerSnippet.layer.cornerRadius = 8;
     
     // Adds placeholder text to markerSnippet text view
-    self.markerSnippet.textColor = [UIColor lightGrayColor];
+    UIColor *placeholderTextColor = [UIColor colorWithRed:199.0/255.0
+                                                    green:199.0/255.0
+                                                    blue:204.0/255.0
+                                                    alpha:1.0];
+    self.markerSnippet.textColor = placeholderTextColor;
     self.markerSnippet.text = @"Description";
     self.markerSnippet.delegate = self;
 }
