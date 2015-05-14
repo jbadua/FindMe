@@ -47,15 +47,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="duJ-RP-syB">
-                                <rect key="frame" x="16" y="110" width="568" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="bGC-XT-u2g"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsV-sv-p0K">
                                 <rect key="frame" x="0.0" y="246" width="600" height="310"/>
                                 <constraints>
@@ -67,9 +58,18 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="bU7-cB-rbJ" kind="embed" id="9rF-dR-q4P"/>
+                                    <segue destination="bU7-cB-rbJ" kind="embed" identifier="addMarkerMapView_embed" id="9rF-dR-q4P"/>
                                 </connections>
                             </containerView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="duJ-RP-syB">
+                                <rect key="frame" x="16" y="110" width="568" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="bGC-XT-u2g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -90,7 +90,7 @@
                     <navigationItem key="navigationItem" title="Add Marker" id="Sqg-5P-Aca">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="qMS-YA-rgp">
                             <connections>
-                                <segue destination="X0j-AB-rgo" kind="unwind" unwindAction="addNewMarker:" id="R39-5Z-DEu"/>
+                                <segue destination="X0j-AB-rgo" kind="unwind" identifier="" unwindAction="addNewMarker:" id="R39-5Z-DEu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -123,10 +123,10 @@
             </objects>
             <point key="canvasLocation" x="-2623" y="-952"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Add Marker Map View Controller-->
         <scene sceneID="9RH-Ie-6Av">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="bU7-cB-rbJ" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="bU7-cB-rbJ" customClass="AddMarkerMapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="U7U-Qc-bUZ"/>
                         <viewControllerLayoutGuide type="bottom" id="XAh-AX-E5c"/>

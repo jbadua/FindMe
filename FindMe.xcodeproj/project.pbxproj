@@ -26,6 +26,7 @@
 		968D17AC1AE60FF000468A63 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 968D17AB1AE60FF000468A63 /* Images.xcassets */; };
 		968D17AF1AE60FF000468A63 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968D17AD1AE60FF000468A63 /* LaunchScreen.xib */; };
 		968D17BB1AE60FF000468A63 /* FindMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 968D17BA1AE60FF000468A63 /* FindMeTests.m */; };
+		969296031B054E0E006E3B83 /* AddMarkerMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969296021B054E0E006E3B83 /* AddMarkerMapViewController.m */; };
 		96DC49F81AE61D4A00BF4AED /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DC49F71AE61D4A00BF4AED /* GoogleMaps.framework */; };
 		96DC49FA1AE61D9E00BF4AED /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 96DC49F91AE61D9E00BF4AED /* GoogleMaps.bundle */; };
 		96DC49FD1AE61E4D00BF4AED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DC49FC1AE61E4D00BF4AED /* AVFoundation.framework */; };
@@ -79,6 +80,8 @@
 		968D17B41AE60FF000468A63 /* FindMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FindMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		968D17B91AE60FF000468A63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		968D17BA1AE60FF000468A63 /* FindMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindMeTests.m; sourceTree = "<group>"; };
+		969296011B054E0E006E3B83 /* AddMarkerMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMarkerMapViewController.h; sourceTree = "<group>"; };
+		969296021B054E0E006E3B83 /* AddMarkerMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMarkerMapViewController.m; sourceTree = "<group>"; };
 		96DC49F71AE61D4A00BF4AED /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		96DC49F91AE61D9E00BF4AED /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		96DC49FC1AE61E4D00BF4AED /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -164,6 +167,8 @@
 				968D17A51AE60FF000468A63 /* MapViewController.h */,
 				968D17A61AE60FF000468A63 /* MapViewController.m */,
 				968D17A81AE60FF000468A63 /* Main.storyboard */,
+				969296011B054E0E006E3B83 /* AddMarkerMapViewController.h */,
+				969296021B054E0E006E3B83 /* AddMarkerMapViewController.m */,
 				9653CDD21B028EE20068F600 /* AddMarkerViewController.h */,
 				9653CDD31B028EE20068F600 /* AddMarkerViewController.m */,
 				968D17AB1AE60FF000468A63 /* Images.xcassets */,
@@ -337,6 +342,7 @@
 				968D17A41AE60FF000468A63 /* AppDelegate.m in Sources */,
 				9653CDD41B028EE20068F600 /* AddMarkerViewController.m in Sources */,
 				968D17A11AE60FF000468A63 /* main.m in Sources */,
+				969296031B054E0E006E3B83 /* AddMarkerMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

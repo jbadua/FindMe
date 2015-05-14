@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@import CoreLocation;
+
+
 @interface AddMarkerViewController : UIViewController <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *markerTitle;
