@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		310BC6D01B054C7C009B0377 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310BC6CF1B054C7C009B0377 /* MainMenuViewController.m */; };
+		31B833861B04100B009150FB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B833851B04100B009150FB /* AddressBook.framework */; };
+		31B833881B041015009150FB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B833871B041014009150FB /* AddressBookUI.framework */; };
 		9653CDBE1AFD51F10068F600 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9653CDBC1AFD51F10068F600 /* Bolts.framework */; };
 		9653CDBF1AFD51F10068F600 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9653CDBD1AFD51F10068F600 /* Parse.framework */; };
 		9653CDC11AFD52440068F600 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9653CDC01AFD52440068F600 /* AudioToolbox.framework */; };
@@ -54,6 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		310BC6CE1B054C7C009B0377 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
+		310BC6CF1B054C7C009B0377 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
+		31B833851B04100B009150FB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		31B833871B041014009150FB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		9653CDBC1AFD51F10068F600 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		9653CDBD1AFD51F10068F600 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		9653CDC01AFD52440068F600 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -103,6 +110,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31B833881B041015009150FB /* AddressBookUI.framework in Frameworks */,
+				31B833861B04100B009150FB /* AddressBook.framework in Frameworks */,
 				9653CDD11AFD52B90068F600 /* Social.framework in Frameworks */,
 				9653CDCF1AFD52B40068F600 /* Accounts.framework in Frameworks */,
 				9653CDCD1AFD52820068F600 /* libsqlite3.dylib in Frameworks */,
@@ -169,6 +178,8 @@
 				968D17A81AE60FF000468A63 /* Main.storyboard */,
 				969296011B054E0E006E3B83 /* AddMarkerMapViewController.h */,
 				969296021B054E0E006E3B83 /* AddMarkerMapViewController.m */,
+				310BC6CE1B054C7C009B0377 /* MainMenuViewController.h */,
+				310BC6CF1B054C7C009B0377 /* MainMenuViewController.m */,
 				9653CDD21B028EE20068F600 /* AddMarkerViewController.h */,
 				9653CDD31B028EE20068F600 /* AddMarkerViewController.m */,
 				968D17AB1AE60FF000468A63 /* Images.xcassets */,
@@ -207,6 +218,8 @@
 		96DC49F61AE6128D00BF4AED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				31B833871B041014009150FB /* AddressBookUI.framework */,
+				31B833851B04100B009150FB /* AddressBook.framework */,
 				9653CDD01AFD52B90068F600 /* Social.framework */,
 				9653CDCE1AFD52B40068F600 /* Accounts.framework */,
 				9653CDCC1AFD52820068F600 /* libsqlite3.dylib */,
@@ -343,6 +356,7 @@
 				9653CDD41B028EE20068F600 /* AddMarkerViewController.m in Sources */,
 				968D17A11AE60FF000468A63 /* main.m in Sources */,
 				969296031B054E0E006E3B83 /* AddMarkerMapViewController.m in Sources */,
+				310BC6D01B054C7C009B0377 /* MainMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
