@@ -123,7 +123,6 @@
         <!--Navigation Controller-->
         <scene sceneID="gcP-di-hZt">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dtZ-XF-ksh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="5il-Gz-5fq" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Iha-ID-3UX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -133,6 +132,7 @@
                         <segue destination="PmS-Jw-Cck" kind="relationship" relationship="rootViewController" id="ZPj-QR-g7F"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dtZ-XF-ksh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3401" y="-3050"/>
         </scene>
