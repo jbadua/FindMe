@@ -1,5 +1,5 @@
 //
-//  ViewController.m
+//  MapViewController.m
 //  FindMe
 //
 //  Created by Jason Badua on 4/20/15.
@@ -41,7 +41,7 @@
     mapView_.delegate = self;
     
     // Adds padding to move compassButton into the display
-    // TODO: Change 100.0 top padding to a scaled number based on the view
+    // TODO: Change 100.0 top padding to a scaled number based on the size of the view
     UIEdgeInsets mapInsets = UIEdgeInsetsMake(100.0, 0.0, 0.0, 0.0);
     mapView_.padding = mapInsets;
 
@@ -65,14 +65,15 @@
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = mapView_.myLocation.coordinate;
     marker.title = sourceViewController.markerTitle.text;
+    marker.snippet = sourceViewController.markerSnippet.text;
     marker.map = mapView_;
     
-    /* TODO: Add Parse Code to save textMarker
-     PFObject *testObject = [PFObject objectWithClassName:@"TextMarker"];
-     testObject[@"Title"] = @"bar";
-     [testObject saveInBackground];
-     */
-    
+    PFObject *textMarker = [PFObject objectWithClassName:@"TextMarker"];
+    textMarker[@"Title"] = marker.title;
+    textMarker[@"Snippet"] = marker.snippet;
+    textMarker[@"Latitude"] = [NSNumber numberWithDouble:marker.position.latitude];
+    textMarker[@"Longitude"] = [NSNumber numberWithDouble:marker.position.longitude];
+    [textMarker saveInBackground];
 }
 
 #pragma mark - KVO updates
