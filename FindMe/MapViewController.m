@@ -54,12 +54,44 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         mapView_.myLocationEnabled = YES;
     });
+    [self addExistingMarkers];
 }
 
 - (void)dealloc {
     [mapView_ removeObserver:self
                   forKeyPath:@"myLocation"
                      context:NULL];
+}
+
+- (void)addExistingMarkers {
+    PFQuery *query = [PFQuery queryWithClassName:@"TextMarker"];
+    [query whereKey:@"createdBy" equalTo:[PFUser currentUser]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+
+                // Coordinates stored as NSNumbers in Parse
+                NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
+                NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
+                CLLocationCoordinate2D markerPosition;
+                markerPosition.latitude = markerLatitude.doubleValue;
+                markerPosition.longitude = markerLongitude.doubleValue;
+
+                GMSMarker *marker = [[GMSMarker alloc] init];
+                marker.title = object[@"title"];
+                marker.snippet = object[@"snippet"];
+                marker.position = markerPosition;
+                marker.map = mapView_;
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 #pragma mark - Navigation
@@ -77,14 +109,13 @@
     marker.map = mapView_;
     
     // Disable saving to parse while testing
-    /*
     PFObject *textMarker = [PFObject objectWithClassName:@"TextMarker"];
-    textMarker[@"Title"] = marker.title;
-    textMarker[@"Snippet"] = marker.snippet;
-    textMarker[@"Latitude"] = [NSNumber numberWithDouble:marker.position.latitude];
-    textMarker[@"Longitude"] = [NSNumber numberWithDouble:marker.position.longitude];
+    textMarker[@"title"] = marker.title;
+    textMarker[@"snippet"] = marker.snippet;
+    textMarker[@"latitude"] = [NSNumber numberWithDouble:marker.position.latitude];
+    textMarker[@"longitude"] = [NSNumber numberWithDouble:marker.position.longitude];
+    textMarker[@"createdBy"] = [PFUser currentUser];
     [textMarker saveInBackground];
-     */
 }
 
 #pragma mark - KVO updates
