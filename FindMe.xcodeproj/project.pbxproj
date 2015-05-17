@@ -30,6 +30,9 @@
 		968D17AF1AE60FF000468A63 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968D17AD1AE60FF000468A63 /* LaunchScreen.xib */; };
 		968D17BB1AE60FF000468A63 /* FindMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 968D17BA1AE60FF000468A63 /* FindMeTests.m */; };
 		969296031B054E0E006E3B83 /* AddMarkerMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969296021B054E0E006E3B83 /* AddMarkerMapViewController.m */; };
+		969296061B06FDE3006E3B83 /* AuthenticateUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969296051B06FDE3006E3B83 /* AuthenticateUserViewController.m */; };
+		969296091B07072A006E3B83 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969296081B07072A006E3B83 /* SignInViewController.m */; };
+		9692960C1B0707AF006E3B83 /* NewUserRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9692960B1B0707AF006E3B83 /* NewUserRegistrationViewController.m */; };
 		96DC49F81AE61D4A00BF4AED /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DC49F71AE61D4A00BF4AED /* GoogleMaps.framework */; };
 		96DC49FA1AE61D9E00BF4AED /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 96DC49F91AE61D9E00BF4AED /* GoogleMaps.bundle */; };
 		96DC49FD1AE61E4D00BF4AED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DC49FC1AE61E4D00BF4AED /* AVFoundation.framework */; };
@@ -89,6 +92,12 @@
 		968D17BA1AE60FF000468A63 /* FindMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindMeTests.m; sourceTree = "<group>"; };
 		969296011B054E0E006E3B83 /* AddMarkerMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMarkerMapViewController.h; sourceTree = "<group>"; };
 		969296021B054E0E006E3B83 /* AddMarkerMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMarkerMapViewController.m; sourceTree = "<group>"; };
+		969296041B06FDE3006E3B83 /* AuthenticateUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticateUserViewController.h; sourceTree = "<group>"; };
+		969296051B06FDE3006E3B83 /* AuthenticateUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateUserViewController.m; sourceTree = "<group>"; };
+		969296071B07072A006E3B83 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		969296081B07072A006E3B83 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		9692960A1B0707AF006E3B83 /* NewUserRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserRegistrationViewController.h; sourceTree = "<group>"; };
+		9692960B1B0707AF006E3B83 /* NewUserRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserRegistrationViewController.m; sourceTree = "<group>"; };
 		96DC49F71AE61D4A00BF4AED /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		96DC49F91AE61D9E00BF4AED /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		96DC49FC1AE61E4D00BF4AED /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -175,7 +184,13 @@
 				968D17A31AE60FF000468A63 /* AppDelegate.m */,
 				968D17A51AE60FF000468A63 /* MapViewController.h */,
 				968D17A61AE60FF000468A63 /* MapViewController.m */,
+				969296041B06FDE3006E3B83 /* AuthenticateUserViewController.h */,
+				969296051B06FDE3006E3B83 /* AuthenticateUserViewController.m */,
 				968D17A81AE60FF000468A63 /* Main.storyboard */,
+				969296071B07072A006E3B83 /* SignInViewController.h */,
+				969296081B07072A006E3B83 /* SignInViewController.m */,
+				9692960A1B0707AF006E3B83 /* NewUserRegistrationViewController.h */,
+				9692960B1B0707AF006E3B83 /* NewUserRegistrationViewController.m */,
 				969296011B054E0E006E3B83 /* AddMarkerMapViewController.h */,
 				969296021B054E0E006E3B83 /* AddMarkerMapViewController.m */,
 				310BC6CE1B054C7C009B0377 /* MainMenuViewController.h */,
@@ -351,9 +366,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				969296091B07072A006E3B83 /* SignInViewController.m in Sources */,
 				968D17A71AE60FF000468A63 /* MapViewController.m in Sources */,
 				968D17A41AE60FF000468A63 /* AppDelegate.m in Sources */,
+				9692960C1B0707AF006E3B83 /* NewUserRegistrationViewController.m in Sources */,
 				9653CDD41B028EE20068F600 /* AddMarkerViewController.m in Sources */,
+				969296061B06FDE3006E3B83 /* AuthenticateUserViewController.m in Sources */,
 				968D17A11AE60FF000468A63 /* main.m in Sources */,
 				969296031B054E0E006E3B83 /* AddMarkerMapViewController.m in Sources */,
 				310BC6D01B054C7C009B0377 /* MainMenuViewController.m in Sources */,

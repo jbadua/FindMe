@@ -71,7 +71,6 @@
     
     
     GMSMarker *marker = [[GMSMarker alloc] init];
-    //marker.position = mapView_.myLocation.coordinate;
     marker.title = sourceViewController.markerTitle.text;
     marker.snippet = sourceViewController.markerSnippet.text;
     marker.position = childViewController.markerPosition;
