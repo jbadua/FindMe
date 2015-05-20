@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		310BC6D01B054C7C009B0377 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310BC6CF1B054C7C009B0377 /* MainMenuViewController.m */; };
+		310BC6D31B0552C6009B0377 /* ContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310BC6D21B0552C6009B0377 /* ContactsTableViewController.m */; };
+		310BC6D51B055D83009B0377 /* Menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 310BC6D41B055D83009B0377 /* Menu.plist */; };
 		31B833861B04100B009150FB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B833851B04100B009150FB /* AddressBook.framework */; };
 		31B833881B041015009150FB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B833871B041014009150FB /* AddressBookUI.framework */; };
 		9653CDBE1AFD51F10068F600 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9653CDBC1AFD51F10068F600 /* Bolts.framework */; };
@@ -58,6 +60,9 @@
 /* Begin PBXFileReference section */
 		310BC6CE1B054C7C009B0377 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		310BC6CF1B054C7C009B0377 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
+		310BC6D11B0552C6009B0377 /* ContactsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTableViewController.h; sourceTree = "<group>"; };
+		310BC6D21B0552C6009B0377 /* ContactsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTableViewController.m; sourceTree = "<group>"; };
+		310BC6D41B055D83009B0377 /* Menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Menu.plist; sourceTree = "<group>"; };
 		31B833851B04100B009150FB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		31B833871B041014009150FB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		9653CDBC1AFD51F10068F600 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -173,6 +178,8 @@
 				968D17A51AE60FF000468A63 /* MapViewController.h */,
 				968D17A61AE60FF000468A63 /* MapViewController.m */,
 				968D17A81AE60FF000468A63 /* Main.storyboard */,
+				310BC6D11B0552C6009B0377 /* ContactsTableViewController.h */,
+				310BC6D21B0552C6009B0377 /* ContactsTableViewController.m */,
 				310BC6CE1B054C7C009B0377 /* MainMenuViewController.h */,
 				310BC6CF1B054C7C009B0377 /* MainMenuViewController.m */,
 				9653CDD21B028EE20068F600 /* AddMarkerViewController.h */,
@@ -187,6 +194,7 @@
 		968D179E1AE60FF000468A63 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				310BC6D41B055D83009B0377 /* Menu.plist */,
 				968D179F1AE60FF000468A63 /* Info.plist */,
 				968D17A01AE60FF000468A63 /* main.m */,
 			);
@@ -329,6 +337,7 @@
 				968D17AF1AE60FF000468A63 /* LaunchScreen.xib in Resources */,
 				968D17AC1AE60FF000468A63 /* Images.xcassets in Resources */,
 				96DC49FA1AE61D9E00BF4AED /* GoogleMaps.bundle in Resources */,
+				310BC6D51B055D83009B0377 /* Menu.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				968D17A71AE60FF000468A63 /* MapViewController.m in Sources */,
+				310BC6D31B0552C6009B0377 /* ContactsTableViewController.m in Sources */,
 				968D17A41AE60FF000468A63 /* AppDelegate.m in Sources */,
 				9653CDD41B028EE20068F600 /* AddMarkerViewController.m in Sources */,
 				968D17A11AE60FF000468A63 /* main.m in Sources */,
