@@ -7,12 +7,15 @@
 //
 
 #import "AddMarkerViewController.h"
+#import "AddMarkerMapViewController.h"
 
 @interface AddMarkerViewController ()
 
 @end
 
-@implementation AddMarkerViewController
+@implementation AddMarkerViewController {
+    UIColor *placeholderTextColor_;
+}
 
 - (void)viewDidLoad {
     // Adds border to markerSnippet text view
@@ -25,11 +28,11 @@
     self.markerSnippet.layer.cornerRadius = 8;
     
     // Adds placeholder text to markerSnippet text view
-    UIColor *placeholderTextColor = [UIColor colorWithRed:199.0/255.0
-                                                    green:199.0/255.0
-                                                    blue:204.0/255.0
-                                                    alpha:1.0];
-    self.markerSnippet.textColor = placeholderTextColor;
+    placeholderTextColor_ = [UIColor colorWithRed:199.0/255.0
+                                            green:199.0/255.0
+                                             blue:204.0/255.0
+                                            alpha:1.0];
+    self.markerSnippet.textColor = placeholderTextColor_;
     self.markerSnippet.text = @"Description";
     self.markerSnippet.delegate = self;
 }
@@ -46,7 +49,7 @@
 
 // Removes placeholder text when user begins writing
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-    if (self.markerSnippet.textColor == [UIColor lightGrayColor]) {
+    if (self.markerSnippet.textColor == placeholderTextColor_) {
         self.markerSnippet.textColor = [UIColor blackColor];
         self.markerSnippet.text = @"";
     }
@@ -56,7 +59,7 @@
 // Adds placeholder text if markerSnipper is empty
 - (void)textViewDidChange:(UITextView *)textView {
     if (self.markerSnippet.text.length == 0) {
-        self.markerSnippet.textColor = [UIColor lightGrayColor];
+        self.markerSnippet.textColor = placeholderTextColor_;
         self.markerSnippet.text = @"Description";
         [self.markerSnippet resignFirstResponder];
     }

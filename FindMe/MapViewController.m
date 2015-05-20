@@ -6,8 +6,12 @@
 //  Copyright (c) 2015 CS 117. All rights reserved.
 //
 
+// TODO: Subclass this and AddMarkerMapViewController from common super class
+
 #import "MapViewController.h"
 #import "AddMarkerViewController.h"
+#import "AddMarkerMapViewController.h"
+
 #import <GoogleMaps/GoogleMaps.h>
 #import <Parse/Parse.h>
 
@@ -16,12 +20,13 @@
 @end
 
 @implementation MapViewController {
-    GMSMapView *mapView_;
     BOOL firstLocationUpdate_;
+    GMSMapView *mapView_;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868
                                                             longitude:151.2086
                                                                  zoom:12];
@@ -49,6 +54,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         mapView_.myLocationEnabled = YES;
     });
+    [self addExistingMarkers];
 }
 
 - (void)dealloc {
@@ -57,22 +63,58 @@
                      context:NULL];
 }
 
+- (void)addExistingMarkers {
+    PFQuery *query = [PFQuery queryWithClassName:@"TextMarker"];
+    [query whereKey:@"createdBy" equalTo:[PFUser currentUser]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+
+                // Coordinates stored as NSNumbers in Parse
+                NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
+                NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
+                CLLocationCoordinate2D markerPosition;
+                markerPosition.latitude = markerLatitude.doubleValue;
+                markerPosition.longitude = markerLongitude.doubleValue;
+
+                GMSMarker *marker = [[GMSMarker alloc] init];
+                marker.title = object[@"title"];
+                marker.snippet = object[@"snippet"];
+                marker.position = markerPosition;
+                marker.map = mapView_;
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
 #pragma mark - Navigation
 
 - (IBAction)addNewMarker:(UIStoryboardSegue*)sender {
     AddMarkerViewController *sourceViewController = sender.sourceViewController;
+    NSArray *childViewControllers = sourceViewController.childViewControllers;
+    AddMarkerMapViewController *childViewController = childViewControllers[0];
+    
     
     GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = mapView_.myLocation.coordinate;
     marker.title = sourceViewController.markerTitle.text;
     marker.snippet = sourceViewController.markerSnippet.text;
+    marker.position = childViewController.markerPosition;
     marker.map = mapView_;
     
+    // Disable saving to parse while testing
     PFObject *textMarker = [PFObject objectWithClassName:@"TextMarker"];
-    textMarker[@"Title"] = marker.title;
-    textMarker[@"Snippet"] = marker.snippet;
-    textMarker[@"Latitude"] = [NSNumber numberWithDouble:marker.position.latitude];
-    textMarker[@"Longitude"] = [NSNumber numberWithDouble:marker.position.longitude];
+    textMarker[@"title"] = marker.title;
+    textMarker[@"snippet"] = marker.snippet;
+    textMarker[@"latitude"] = [NSNumber numberWithDouble:marker.position.latitude];
+    textMarker[@"longitude"] = [NSNumber numberWithDouble:marker.position.longitude];
+    textMarker[@"createdBy"] = [PFUser currentUser];
     [textMarker saveInBackground];
 }
 
