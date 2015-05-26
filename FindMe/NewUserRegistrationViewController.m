@@ -30,12 +30,31 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBarHidden = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)displayUserRegistrationError:(NSError *)error {
+    NSString *alertTitle = @"Sign In Failed";
+    NSString *alertMessage = [error userInfo][@"error"];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:alertTitle
+                                                                             message:alertMessage
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action) {
+                                                         NSLog(@"OK action");
+                                                     }];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (IBAction)createNewUser:(id)sender {
@@ -49,9 +68,7 @@
             if (!error) {   // Hooray! Let them use the app now.
                 [self performSegueWithIdentifier:@"newUserCreated" sender:sender];
             } else {
-                NSString *errorString = [error userInfo][@"error"];
-                UIAlertController *alert = nil;
-                // Show the errorString somewhere and let the user try again.
+                [self displayUserRegistrationError:error];
             }
         }];
     }

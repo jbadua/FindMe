@@ -10,4 +10,9 @@
 
 @interface AddFriendsTableViewController : UITableViewController
 
+@property (nonatomic, copy) NSArray *users;
+@property (nonatomic, copy) NSArray *indexPathsForSelectedRows;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) UISearchController *searchController;
+
 @end

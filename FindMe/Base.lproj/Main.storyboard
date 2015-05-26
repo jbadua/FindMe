@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5il-Gz-5fq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5il-Gz-5fq">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -28,7 +28,63 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1793" y="-3050"/>
+            <point key="canvasLocation" x="-1825" y="-2664"/>
+        </scene>
+        <!--Search People-->
+        <scene sceneID="Gmi-Lu-fPX">
+            <objects>
+                <tableViewController id="m6J-YO-wr6" customClass="AddFriendsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="t4b-Uf-X6n">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="l0g-ff-HS6">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="m6J-YO-wr6" id="4oZ-nK-sFJ"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="y7g-Gf-bWI">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y7g-Gf-bWI" id="rVX-4s-N01">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="m6J-YO-wr6" id="XVI-Q5-aES"/>
+                            <outlet property="delegate" destination="m6J-YO-wr6" id="Qbu-qE-C7E"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Search People" id="Oke-DU-UYZ">
+                        <barButtonItem key="rightBarButtonItem" title="Add Friends" id="Kkd-aw-1DQ">
+                            <connections>
+                                <segue destination="vfi-x8-0S7" kind="unwind" unwindAction="addFriends:" id="rF9-cP-YMd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="l0g-ff-HS6" id="mIa-b8-oui"/>
+                        <outlet property="searchDisplayController" destination="gEZ-3s-lvc" id="f9G-pR-Lng"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dxp-yu-Y4k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vfi-x8-0S7" userLabel="Exit" sceneMemberID="exit"/>
+                <searchDisplayController id="gEZ-3s-lvc">
+                    <connections>
+                        <outlet property="delegate" destination="m6J-YO-wr6" id="09g-RF-qZT"/>
+                        <outlet property="searchBar" destination="l0g-ff-HS6" id="coi-te-QaK"/>
+                        <outlet property="searchContentsController" destination="m6J-YO-wr6" id="paE-Dp-fyl"/>
+                        <outlet property="searchResultsDataSource" destination="m6J-YO-wr6" id="CFK-dS-PwA"/>
+                        <outlet property="searchResultsDelegate" destination="m6J-YO-wr6" id="EqD-yo-PQH"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="-1825" y="-1927"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="M7W-P9-Q4t">
@@ -72,10 +128,21 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyC-2d-qtf">
+                                <rect key="frame" x="258" y="399" width="84" height="30"/>
+                                <state key="normal" title="Add Friends">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="m6J-YO-wr6" kind="show" id="ffq-Qw-yhJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="iyC-2d-qtf" secondAttribute="centerX" id="0ub-0V-WSA"/>
                             <constraint firstItem="iYZ-vv-VvQ" firstAttribute="top" secondItem="T0e-nu-gib" secondAttribute="bottom" constant="8" id="2Xi-Jb-K5R"/>
+                            <constraint firstItem="iyC-2d-qtf" firstAttribute="top" secondItem="iYZ-vv-VvQ" secondAttribute="bottom" constant="8" id="5Qz-9k-Zvd"/>
                             <constraint firstItem="giR-lG-fNd" firstAttribute="top" secondItem="vmR-Q3-IxE" secondAttribute="bottom" constant="73" id="But-24-a1u"/>
                             <constraint firstAttribute="centerY" secondItem="giR-lG-fNd" secondAttribute="centerY" id="K02-Y1-S4W"/>
                             <constraint firstAttribute="centerX" secondItem="iYZ-vv-VvQ" secondAttribute="centerX" id="awn-nV-L8N"/>
@@ -328,7 +395,33 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OMU-ZY-hXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2629" y="-2267"/>
+            <point key="canvasLocation" x="-1825" y="-4175"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="4FD-YW-Vp9">
+            <objects>
+                <tableViewController id="qBf-bo-hqx" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Xyq-yS-ppa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="d8k-VU-n3W">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d8k-VU-n3W" id="qjN-Ik-Nth">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qBf-bo-hqx" id="6cS-lF-tdk"/>
+                            <outlet property="delegate" destination="qBf-bo-hqx" id="8dh-kt-iTF"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JFb-3D-VmC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1825" y="-3417"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gcP-di-hZt">

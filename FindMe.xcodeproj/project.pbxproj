@@ -10,6 +10,8 @@
 		310BC6D01B054C7C009B0377 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310BC6CF1B054C7C009B0377 /* MainMenuViewController.m */; };
 		31B833861B04100B009150FB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B833851B04100B009150FB /* AddressBook.framework */; };
 		31B833881B041015009150FB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B833871B041014009150FB /* AddressBookUI.framework */; };
+		9624925C1B0C26B900D30CDD /* InvitesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9624925B1B0C26B900D30CDD /* InvitesTableViewController.m */; };
+		962B585D1B0AD06400ADBD3A /* AddFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B585C1B0AD06400ADBD3A /* AddFriendsTableViewController.m */; };
 		9653CDBE1AFD51F10068F600 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9653CDBC1AFD51F10068F600 /* Bolts.framework */; };
 		9653CDBF1AFD51F10068F600 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9653CDBD1AFD51F10068F600 /* Parse.framework */; };
 		9653CDC11AFD52440068F600 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9653CDC01AFD52440068F600 /* AudioToolbox.framework */; };
@@ -64,6 +66,10 @@
 		310BC6CF1B054C7C009B0377 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		31B833851B04100B009150FB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		31B833871B041014009150FB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		9624925A1B0C26B900D30CDD /* InvitesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitesTableViewController.h; sourceTree = "<group>"; };
+		9624925B1B0C26B900D30CDD /* InvitesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitesTableViewController.m; sourceTree = "<group>"; };
+		962B585B1B0AD06400ADBD3A /* AddFriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsTableViewController.h; sourceTree = "<group>"; };
+		962B585C1B0AD06400ADBD3A /* AddFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsTableViewController.m; sourceTree = "<group>"; };
 		9653CDBC1AFD51F10068F600 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		9653CDBD1AFD51F10068F600 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		9653CDC01AFD52440068F600 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -180,6 +186,8 @@
 		968D179D1AE60FF000468A63 /* FindMe */ = {
 			isa = PBXGroup;
 			children = (
+				9624925A1B0C26B900D30CDD /* InvitesTableViewController.h */,
+				9624925B1B0C26B900D30CDD /* InvitesTableViewController.m */,
 				968D17A21AE60FF000468A63 /* AppDelegate.h */,
 				968D17A31AE60FF000468A63 /* AppDelegate.m */,
 				968D17A51AE60FF000468A63 /* MapViewController.h */,
@@ -187,6 +195,8 @@
 				969296041B06FDE3006E3B83 /* AuthenticateUserViewController.h */,
 				969296051B06FDE3006E3B83 /* AuthenticateUserViewController.m */,
 				968D17A81AE60FF000468A63 /* Main.storyboard */,
+				962B585B1B0AD06400ADBD3A /* AddFriendsTableViewController.h */,
+				962B585C1B0AD06400ADBD3A /* AddFriendsTableViewController.m */,
 				969296071B07072A006E3B83 /* SignInViewController.h */,
 				969296081B07072A006E3B83 /* SignInViewController.m */,
 				9692960A1B0707AF006E3B83 /* NewUserRegistrationViewController.h */,
@@ -367,8 +377,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				969296091B07072A006E3B83 /* SignInViewController.m in Sources */,
+				962B585D1B0AD06400ADBD3A /* AddFriendsTableViewController.m in Sources */,
 				968D17A71AE60FF000468A63 /* MapViewController.m in Sources */,
 				968D17A41AE60FF000468A63 /* AppDelegate.m in Sources */,
+				9624925C1B0C26B900D30CDD /* InvitesTableViewController.m in Sources */,
 				9692960C1B0707AF006E3B83 /* NewUserRegistrationViewController.m in Sources */,
 				9653CDD41B028EE20068F600 /* AddMarkerViewController.m in Sources */,
 				969296061B06FDE3006E3B83 /* AuthenticateUserViewController.m in Sources */,

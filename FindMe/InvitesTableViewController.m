@@ -8,7 +8,17 @@
 
 #import "InvitesTableViewController.h"
 
+#import <Parse/Parse.h>
+
+typedef NS_ENUM(NSInteger, InviteSection) {
+    GroupSection,
+    FriendSection
+};
+
 @interface InvitesTableViewController ()
+
+@property (nonatomic, copy) NSArray *friendInvites;
+@property (nonatomic, copy) NSArray *groupInvites;
 
 @end
 
@@ -22,6 +32,38 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    PFQuery *query = [PFQuery queryWithClassName:@"FriendInvite"];
+    [query whereKey:@"invitee" equalTo:[PFUser currentUser][@"username"]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+
+    query = [PFQuery queryWithClassName:@"GroupInvite"];
+    [query whereKey:@"invitee" equalTo:[PFUser currentUser][@"username"]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,15 +74,18 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    // Two Sections: Group Invites and Friend Invites
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    if (section == GroupSection) {
+        return self.groupInvites.count;
+    } else {
+        return self.friendInvites.count;
+    }
 }
 
 /*

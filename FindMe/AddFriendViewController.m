@@ -10,6 +10,8 @@
 
 @interface AddFriendViewController ()
 
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
 @end
 
 @implementation AddFriendViewController

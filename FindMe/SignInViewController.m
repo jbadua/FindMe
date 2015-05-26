@@ -27,12 +27,31 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBarHidden = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)displaySignInError:(NSError *)error {
+    NSString *alertTitle = @"Sign In Failed";
+    NSString *alertMessage = [error userInfo][@"error"];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:alertTitle
+                                                                             message:alertMessage
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action) {
+                                                         NSLog(@"OK action");
+                                                     }];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (IBAction)signInUser:(id)sender {
@@ -43,7 +62,7 @@
             [self performSegueWithIdentifier:@"userSignedIn" sender:nil];
         } else {
             // The login failed. Check error to see why.
-            // TODO: Show alert with error text
+            [self displaySignInError:error];
         }
     }];
 }
