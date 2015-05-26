@@ -104,7 +104,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="P6f-4Z-tEy" kind="show" id="g5b-cv-Kp3"/>
+                                    <segue destination="P6f-4Z-tEy" kind="show" id="uaN-F6-NwR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0e-nu-gib">
@@ -371,13 +371,13 @@
         <!--Contacts-->
         <scene sceneID="Itq-jv-IOJ">
             <objects>
-                <tableViewController id="P6f-4Z-tEy" sceneMemberID="viewController">
+                <tableViewController id="P6f-4Z-tEy" customClass="ContactsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lOb-5Z-hh3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="A5c-Fq-HXl">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Contact Names" id="A5c-Fq-HXl">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A5c-Fq-HXl" id="Xod-N0-ah1">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -390,7 +390,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Contacts" id="j3F-0R-saK">
-                        <barButtonItem key="rightBarButtonItem" title="Send Invites" id="36B-kD-sNB"/>
+                        <barButtonItem key="rightBarButtonItem" title="Send Invites" id="36B-kD-sNB">
+                            <connections>
+                                <action selector="sendInvites:" destination="P6f-4Z-tEy" id="mda-Y8-uw8"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OMU-ZY-hXq" userLabel="First Responder" sceneMemberID="firstResponder"/>

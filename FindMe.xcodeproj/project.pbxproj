@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		310BC6D01B054C7C009B0377 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310BC6CF1B054C7C009B0377 /* MainMenuViewController.m */; };
+		310BC6D31B0552C6009B0377 /* ContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310BC6D21B0552C6009B0377 /* ContactsTableViewController.m */; };
 		31B833861B04100B009150FB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B833851B04100B009150FB /* AddressBook.framework */; };
 		31B833881B041015009150FB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B833871B041014009150FB /* AddressBookUI.framework */; };
 		9624925C1B0C26B900D30CDD /* InvitesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9624925B1B0C26B900D30CDD /* InvitesTableViewController.m */; };
@@ -64,6 +65,8 @@
 /* Begin PBXFileReference section */
 		310BC6CE1B054C7C009B0377 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		310BC6CF1B054C7C009B0377 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
+		310BC6D11B0552C6009B0377 /* ContactsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTableViewController.h; sourceTree = "<group>"; };
+		310BC6D21B0552C6009B0377 /* ContactsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTableViewController.m; sourceTree = "<group>"; };
 		31B833851B04100B009150FB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		31B833871B041014009150FB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		9624925A1B0C26B900D30CDD /* InvitesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitesTableViewController.h; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 				968D17A81AE60FF000468A63 /* Main.storyboard */,
 				962B585B1B0AD06400ADBD3A /* AddFriendsTableViewController.h */,
 				962B585C1B0AD06400ADBD3A /* AddFriendsTableViewController.m */,
+				310BC6D11B0552C6009B0377 /* ContactsTableViewController.h */,
+				310BC6D21B0552C6009B0377 /* ContactsTableViewController.m */,
 				969296071B07072A006E3B83 /* SignInViewController.h */,
 				969296081B07072A006E3B83 /* SignInViewController.m */,
 				9692960A1B0707AF006E3B83 /* NewUserRegistrationViewController.h */,
@@ -379,6 +384,7 @@
 				969296091B07072A006E3B83 /* SignInViewController.m in Sources */,
 				962B585D1B0AD06400ADBD3A /* AddFriendsTableViewController.m in Sources */,
 				968D17A71AE60FF000468A63 /* MapViewController.m in Sources */,
+				310BC6D31B0552C6009B0377 /* ContactsTableViewController.m in Sources */,
 				968D17A41AE60FF000468A63 /* AppDelegate.m in Sources */,
 				9624925C1B0C26B900D30CDD /* InvitesTableViewController.m in Sources */,
 				9692960C1B0707AF006E3B83 /* NewUserRegistrationViewController.m in Sources */,
