@@ -103,6 +103,36 @@
     }];
 }
 
+- (void)deleteMarker:(GMSMarker *)marker {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"TextMarker"];
+    [query whereKey:@"createdBy" equalTo:[PFUser currentUser].objectId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+                
+                CLLocationCoordinate2D markerPosition = marker.position;
+                
+                NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
+                NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
+                
+                if (markerPosition.longitude == markerLongitude.doubleValue
+                    && markerPosition.latitude == markerLatitude.doubleValue){
+                    [object deleteInBackground];
+                }
+                
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+}
 #pragma mark - Navigation
 
 - (IBAction)addNewMarker:(UIStoryboardSegue*)sender {
@@ -156,6 +186,29 @@
     }
     
 }
+
+- (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Delete Marker?"
+                                                                   message:@"Would you like to remove this marker from the map?"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive
+                                                          handler:^(UIAlertAction * action) {
+                                                              [self deleteMarker:marker];
+                                                              marker.map = nil;
+                                                              
+    }];
+    
+    UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+    }];
+    
+    [alert addAction:defaultAction];
+    [alert addAction:cancelButton];
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+
 
 
 #pragma mark - FriendMarker Methods
