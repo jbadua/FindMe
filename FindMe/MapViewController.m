@@ -244,6 +244,7 @@
                             // TODO: Need to display the last time each person was online
                             GMSMarker *marker = [[GMSMarker alloc] init];
                             marker.title = object[@"username"];
+//                            marker.snippet = timeSinceLastCheckin;
                             marker.position = markerPosition;
                             marker.map = mapView_;
                             marker.icon = [UIImage imageNamed:@"friend_marker.png"];
