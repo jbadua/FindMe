@@ -50,6 +50,11 @@
 		96DC4A0F1AE61EBE00BF4AED /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DC4A0E1AE61EBE00BF4AED /* CoreText.framework */; };
 		96DC4A111AE61EC500BF4AED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DC4A101AE61EC500BF4AED /* CoreLocation.framework */; };
 		96DC4A131AE61ECB00BF4AED /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DC4A121AE61ECB00BF4AED /* CoreData.framework */; };
+		96F2E0761B170849001FDE2E /* CreateGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F2E0751B170849001FDE2E /* CreateGroupTableViewController.m */; };
+		96F2E0791B181BD1001FDE2E /* ViewGroupsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F2E0781B181BD1001FDE2E /* ViewGroupsTableViewController.m */; };
+		96F2E07C1B1CF8AB001FDE2E /* CreateGroupDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F2E07B1B1CF8AB001FDE2E /* CreateGroupDescriptionViewController.m */; };
+		96F2E07F1B1D9637001FDE2E /* EditGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F2E07E1B1D9637001FDE2E /* EditGroupViewController.m */; };
+		96F2E0821B1E1BAD001FDE2E /* GroupMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F2E0811B1E1BAD001FDE2E /* GroupMapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +126,16 @@
 		96DC4A0E1AE61EBE00BF4AED /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		96DC4A101AE61EC500BF4AED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		96DC4A121AE61ECB00BF4AED /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		96F2E0741B170849001FDE2E /* CreateGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupTableViewController.h; sourceTree = "<group>"; };
+		96F2E0751B170849001FDE2E /* CreateGroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupTableViewController.m; sourceTree = "<group>"; };
+		96F2E0771B181BD1001FDE2E /* ViewGroupsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewGroupsTableViewController.h; sourceTree = "<group>"; };
+		96F2E0781B181BD1001FDE2E /* ViewGroupsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewGroupsTableViewController.m; sourceTree = "<group>"; };
+		96F2E07A1B1CF8AB001FDE2E /* CreateGroupDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupDescriptionViewController.h; sourceTree = "<group>"; };
+		96F2E07B1B1CF8AB001FDE2E /* CreateGroupDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupDescriptionViewController.m; sourceTree = "<group>"; };
+		96F2E07D1B1D9637001FDE2E /* EditGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditGroupViewController.h; sourceTree = "<group>"; };
+		96F2E07E1B1D9637001FDE2E /* EditGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditGroupViewController.m; sourceTree = "<group>"; };
+		96F2E0801B1E1BAD001FDE2E /* GroupMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMapViewController.h; sourceTree = "<group>"; };
+		96F2E0811B1E1BAD001FDE2E /* GroupMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,9 +210,19 @@
 				968D17A31AE60FF000468A63 /* AppDelegate.m */,
 				968D17A51AE60FF000468A63 /* MapViewController.h */,
 				968D17A61AE60FF000468A63 /* MapViewController.m */,
+				96F2E0801B1E1BAD001FDE2E /* GroupMapViewController.h */,
+				96F2E0811B1E1BAD001FDE2E /* GroupMapViewController.m */,
 				969296041B06FDE3006E3B83 /* AuthenticateUserViewController.h */,
 				969296051B06FDE3006E3B83 /* AuthenticateUserViewController.m */,
 				968D17A81AE60FF000468A63 /* Main.storyboard */,
+				96F2E07D1B1D9637001FDE2E /* EditGroupViewController.h */,
+				96F2E07E1B1D9637001FDE2E /* EditGroupViewController.m */,
+				96F2E07A1B1CF8AB001FDE2E /* CreateGroupDescriptionViewController.h */,
+				96F2E07B1B1CF8AB001FDE2E /* CreateGroupDescriptionViewController.m */,
+				96F2E0771B181BD1001FDE2E /* ViewGroupsTableViewController.h */,
+				96F2E0781B181BD1001FDE2E /* ViewGroupsTableViewController.m */,
+				96F2E0741B170849001FDE2E /* CreateGroupTableViewController.h */,
+				96F2E0751B170849001FDE2E /* CreateGroupTableViewController.m */,
 				962B585B1B0AD06400ADBD3A /* AddFriendsTableViewController.h */,
 				962B585C1B0AD06400ADBD3A /* AddFriendsTableViewController.m */,
 				310BC6D11B0552C6009B0377 /* ContactsTableViewController.h */,
@@ -384,10 +409,15 @@
 				969296091B07072A006E3B83 /* SignInViewController.m in Sources */,
 				962B585D1B0AD06400ADBD3A /* AddFriendsTableViewController.m in Sources */,
 				968D17A71AE60FF000468A63 /* MapViewController.m in Sources */,
+				96F2E0821B1E1BAD001FDE2E /* GroupMapViewController.m in Sources */,
 				310BC6D31B0552C6009B0377 /* ContactsTableViewController.m in Sources */,
+				96F2E07C1B1CF8AB001FDE2E /* CreateGroupDescriptionViewController.m in Sources */,
 				968D17A41AE60FF000468A63 /* AppDelegate.m in Sources */,
+				96F2E07F1B1D9637001FDE2E /* EditGroupViewController.m in Sources */,
 				9624925C1B0C26B900D30CDD /* InvitesTableViewController.m in Sources */,
+				96F2E0761B170849001FDE2E /* CreateGroupTableViewController.m in Sources */,
 				9692960C1B0707AF006E3B83 /* NewUserRegistrationViewController.m in Sources */,
+				96F2E0791B181BD1001FDE2E /* ViewGroupsTableViewController.m in Sources */,
 				9653CDD41B028EE20068F600 /* AddMarkerViewController.m in Sources */,
 				969296061B06FDE3006E3B83 /* AuthenticateUserViewController.m in Sources */,
 				968D17A11AE60FF000468A63 /* main.m in Sources */,

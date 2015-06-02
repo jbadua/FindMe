@@ -159,6 +159,7 @@
 
 
 #pragma mark - FriendMarker Methods
+
 - (void)getFriendsLocations {
     
     PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friends"];

@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface ContactsTableViewController : UITableViewController
 
 @property (nonatomic, copy) NSArray* allContactNames;
-
 
 @end

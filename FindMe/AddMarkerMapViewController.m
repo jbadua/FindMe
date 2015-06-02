@@ -9,7 +9,9 @@
 // TODO: Subclass this and MapViewController from common super class
 
 #import "AddMarkerMapViewController.h"
+
 #import <GoogleMaps/GoogleMaps.h>
+#import <Parse/Parse.h>
 
 @interface AddMarkerMapViewController ()
 
@@ -46,12 +48,44 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         mapView_.myLocationEnabled = YES;
     });
+    [self addExistingMarkers];
 }
 
 - (void)dealloc {
     [mapView_ removeObserver:self
                   forKeyPath:@"myLocation"
                      context:NULL];
+}
+
+- (void)addExistingMarkers {
+    PFQuery *query = [PFQuery queryWithClassName:@"TextMarker"];
+    [query whereKey:@"createdBy" equalTo:[PFUser currentUser].objectId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+
+                // Coordinates stored as NSNumbers in Parse
+                NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
+                NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
+                CLLocationCoordinate2D markerPosition;
+                markerPosition.latitude = markerLatitude.doubleValue;
+                markerPosition.longitude = markerLongitude.doubleValue;
+
+                GMSMarker *marker = [[GMSMarker alloc] init];
+                marker.title = object[@"title"];
+                marker.snippet = object[@"snippet"];
+                marker.position = markerPosition;
+                marker.map = mapView_;
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 #pragma mark - KVO updates
@@ -81,7 +115,12 @@
 // Disables marker info window
 // Marker is only used to get location for the new marker
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
-    return YES;
+    if (marker.draggable) {
+        return YES;
+    } else {
+        return NO;
+    }
+
 }
 
 - (void)mapView:(GMSMapView *)mapView didEndDraggingMarker:(GMSMarker *)marker {
