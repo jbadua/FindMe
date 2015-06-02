@@ -17,6 +17,8 @@
 
 @interface MapViewController ()
 
+@property (nonatomic, strong) NSArray *friends;
+
 @end
 
 @implementation MapViewController {
@@ -55,6 +57,13 @@
         mapView_.myLocationEnabled = YES;
     });
     [self addExistingMarkers];
+    [self getFriendsLocations];
+    
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:60.0f
+                                                      target:self
+                                                    selector:@selector(getFriendsLocations)
+                                                    userInfo:nil
+                                                     repeats:YES];
 }
 
 - (void)dealloc {
@@ -65,11 +74,11 @@
 
 - (void)addExistingMarkers {
     PFQuery *query = [PFQuery queryWithClassName:@"TextMarker"];
-    [query whereKey:@"createdBy" equalTo:[PFUser currentUser]];
+    [query whereKey:@"createdBy" equalTo:[PFUser currentUser].objectId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+            NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
             // Do something with the found objects
             for (PFObject *object in objects) {
                 NSLog(@"%@", object.objectId);
@@ -94,6 +103,36 @@
     }];
 }
 
+- (void)deleteMarker:(GMSMarker *)marker {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"TextMarker"];
+    [query whereKey:@"createdBy" equalTo:[PFUser currentUser].objectId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+                
+                CLLocationCoordinate2D markerPosition = marker.position;
+                
+                NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
+                NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
+                
+                if (markerPosition.longitude == markerLongitude.doubleValue
+                    && markerPosition.latitude == markerLatitude.doubleValue){
+                    [object deleteInBackground];
+                }
+                
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+}
 #pragma mark - Navigation
 
 - (IBAction)addNewMarker:(UIStoryboardSegue*)sender {
@@ -114,7 +153,7 @@
     textMarker[@"snippet"] = marker.snippet;
     textMarker[@"latitude"] = [NSNumber numberWithDouble:marker.position.latitude];
     textMarker[@"longitude"] = [NSNumber numberWithDouble:marker.position.longitude];
-    textMarker[@"createdBy"] = [PFUser currentUser];
+    textMarker[@"createdBy"] = [PFUser currentUser].objectId;
     [textMarker saveInBackground];
 }
 
@@ -147,5 +186,83 @@
     }
     
 }
+
+- (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Delete Marker?"
+                                                                   message:@"Would you like to remove this marker from the map?"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive
+                                                          handler:^(UIAlertAction * action) {
+                                                              [self deleteMarker:marker];
+                                                              marker.map = nil;
+                                                              
+    }];
+    
+    UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+    }];
+    
+    [alert addAction:defaultAction];
+    [alert addAction:cancelButton];
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+
+
+
+#pragma mark - FriendMarker Methods
+
+- (void)getFriendsLocations {
+    
+    PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friends"];
+    [friendQuery whereKey:@"a" equalTo:[PFUser currentUser].objectId];
+    [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.friends = objects;
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu friends.", (unsigned long)objects.count);
+            
+            for(PFObject *friend in self.friends){
+                PFQuery *locationQuery = [PFUser query];
+                [locationQuery whereKey:@"objectId" equalTo:friend[@"b"]];
+                [locationQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    if (!error) {
+                        // The find succeeded.
+                        NSLog(@"Successfully retrieved %lu friends test.", (unsigned long)objects.count);
+                        // Do something with the found objects
+                        for (PFObject *object in objects) {
+                            NSLog(@"%@", object.objectId);
+                            
+                            // Coordinates stored as NSNumbers in Parse
+                            NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
+                            NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
+                            CLLocationCoordinate2D markerPosition;
+                            markerPosition.latitude = markerLatitude.doubleValue;
+                            markerPosition.longitude = markerLongitude.doubleValue;
+                            NSLog(@"Latitude: %f \n Longitude: %f",markerPosition.latitude,markerPosition.longitude);
+                            
+                            // TODO: Need to display the last time each person was online
+                            GMSMarker *marker = [[GMSMarker alloc] init];
+                            marker.title = object[@"username"];
+                            marker.position = markerPosition;
+                            marker.map = mapView_;
+                            marker.icon = [UIImage imageNamed:@"friend_marker.png"];
+                        }
+                    } else {
+                        // Log details of the failure
+                        NSLog(@"Error: %@ %@", error, [error userInfo]);
+                    }
+                }];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+     }];
+}
+
+    
+         
 
 @end

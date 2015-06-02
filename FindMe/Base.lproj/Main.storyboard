@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5il-Gz-5fq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5il-Gz-5fq">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -28,7 +28,63 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1793" y="-3050"/>
+            <point key="canvasLocation" x="-1825" y="-2664"/>
+        </scene>
+        <!--Search People-->
+        <scene sceneID="Gmi-Lu-fPX">
+            <objects>
+                <tableViewController id="m6J-YO-wr6" customClass="AddFriendsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="t4b-Uf-X6n">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="l0g-ff-HS6">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="m6J-YO-wr6" id="4oZ-nK-sFJ"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="y7g-Gf-bWI">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y7g-Gf-bWI" id="rVX-4s-N01">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="m6J-YO-wr6" id="XVI-Q5-aES"/>
+                            <outlet property="delegate" destination="m6J-YO-wr6" id="Qbu-qE-C7E"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Search People" id="Oke-DU-UYZ">
+                        <barButtonItem key="rightBarButtonItem" title="Add Friends" id="Kkd-aw-1DQ">
+                            <connections>
+                                <segue destination="vfi-x8-0S7" kind="unwind" unwindAction="addFriends:" id="rF9-cP-YMd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="l0g-ff-HS6" id="mIa-b8-oui"/>
+                        <outlet property="searchDisplayController" destination="gEZ-3s-lvc" id="f9G-pR-Lng"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dxp-yu-Y4k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vfi-x8-0S7" userLabel="Exit" sceneMemberID="exit"/>
+                <searchDisplayController id="gEZ-3s-lvc">
+                    <connections>
+                        <outlet property="delegate" destination="m6J-YO-wr6" id="09g-RF-qZT"/>
+                        <outlet property="searchBar" destination="l0g-ff-HS6" id="coi-te-QaK"/>
+                        <outlet property="searchContentsController" destination="m6J-YO-wr6" id="paE-Dp-fyl"/>
+                        <outlet property="searchResultsDataSource" destination="m6J-YO-wr6" id="CFK-dS-PwA"/>
+                        <outlet property="searchResultsDelegate" destination="m6J-YO-wr6" id="EqD-yo-PQH"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="-1825" y="-1927"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="M7W-P9-Q4t">
@@ -48,7 +104,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="P6f-4Z-tEy" kind="show" id="g5b-cv-Kp3"/>
+                                    <segue destination="dRQ-Wj-uc8" kind="show" id="P6U-fg-L57"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0e-nu-gib">
@@ -67,19 +123,41 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FindMe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmR-Q3-IxE">
-                                <rect key="frame" x="238" y="169" width="125" height="43"/>
+                                <rect key="frame" x="238" y="169" width="124.5" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyC-2d-qtf">
+                                <rect key="frame" x="258" y="399" width="84" height="30"/>
+                                <state key="normal" title="Add Friends">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="m6J-YO-wr6" kind="show" id="ffq-Qw-yhJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="np6-uk-0hc">
+                                <rect key="frame" x="256.5" y="437" width="87" height="30"/>
+                                <state key="normal" title="View Groups">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="qBf-bo-hqx" kind="show" id="zvG-wY-GiO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="iyC-2d-qtf" secondAttribute="centerX" id="0ub-0V-WSA"/>
                             <constraint firstItem="iYZ-vv-VvQ" firstAttribute="top" secondItem="T0e-nu-gib" secondAttribute="bottom" constant="8" id="2Xi-Jb-K5R"/>
+                            <constraint firstItem="iyC-2d-qtf" firstAttribute="top" secondItem="iYZ-vv-VvQ" secondAttribute="bottom" constant="8" id="5Qz-9k-Zvd"/>
+                            <constraint firstItem="np6-uk-0hc" firstAttribute="top" secondItem="iyC-2d-qtf" secondAttribute="bottom" constant="8" id="72G-Zo-SKZ"/>
                             <constraint firstItem="giR-lG-fNd" firstAttribute="top" secondItem="vmR-Q3-IxE" secondAttribute="bottom" constant="73" id="But-24-a1u"/>
                             <constraint firstAttribute="centerY" secondItem="giR-lG-fNd" secondAttribute="centerY" id="K02-Y1-S4W"/>
                             <constraint firstAttribute="centerX" secondItem="iYZ-vv-VvQ" secondAttribute="centerX" id="awn-nV-L8N"/>
                             <constraint firstAttribute="centerX" secondItem="T0e-nu-gib" secondAttribute="centerX" id="eqm-Wu-Tcn"/>
+                            <constraint firstAttribute="centerX" secondItem="np6-uk-0hc" secondAttribute="centerX" id="ls7-O3-VZa"/>
                             <constraint firstAttribute="centerX" secondItem="vmR-Q3-IxE" secondAttribute="centerX" id="luR-tT-t7p"/>
                             <constraint firstAttribute="centerX" secondItem="giR-lG-fNd" secondAttribute="centerX" id="nCB-ti-6Jc"/>
                             <constraint firstItem="T0e-nu-gib" firstAttribute="top" secondItem="giR-lG-fNd" secondAttribute="bottom" constant="8" id="wok-eS-TeY"/>
@@ -301,16 +379,16 @@
             </objects>
             <point key="canvasLocation" x="-3415" y="-2664"/>
         </scene>
-        <!--Contacts-->
+        <!--Create Group-->
         <scene sceneID="Itq-jv-IOJ">
             <objects>
-                <tableViewController id="P6f-4Z-tEy" sceneMemberID="viewController">
+                <tableViewController id="P6f-4Z-tEy" customClass="CreateGroupTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lOb-5Z-hh3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="A5c-Fq-HXl">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Contact Names" id="A5c-Fq-HXl">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A5c-Fq-HXl" id="Xod-N0-ah1">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -322,13 +400,163 @@
                             <outlet property="delegate" destination="P6f-4Z-tEy" id="5X1-pb-Ttu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Contacts" id="j3F-0R-saK">
-                        <barButtonItem key="rightBarButtonItem" title="Send Invites" id="36B-kD-sNB"/>
+                    <navigationItem key="navigationItem" title="Create Group" id="j3F-0R-saK">
+                        <barButtonItem key="rightBarButtonItem" title="Send Invites" id="36B-kD-sNB">
+                            <connections>
+                                <segue destination="qBf-bo-hqx" kind="show" identifier="newGroupCreated" id="Mfs-Vl-Ejx"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OMU-ZY-hXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2629" y="-2267"/>
+            <point key="canvasLocation" x="-809" y="-4250"/>
+        </scene>
+        <!--Create Group Description View Controller-->
+        <scene sceneID="Ucz-Pd-rOb">
+            <objects>
+                <viewController id="dRQ-Wj-uc8" customClass="CreateGroupDescriptionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LaK-8a-hZ3"/>
+                        <viewControllerLayoutGuide type="bottom" id="zSj-ga-ZMO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WJa-L6-a3a">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Group Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DYF-gx-TQW">
+                                <rect key="frame" x="16" y="69" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgs-TI-0db">
+                                <rect key="frame" x="16" y="135" width="59.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXL-k3-kRx">
+                                <rect key="frame" x="260" y="443" width="80" height="30"/>
+                                <state key="normal" title="Add People">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="P6f-4Z-tEy" kind="show" id="TYm-Bs-ZTT"/>
+                                </connections>
+                            </button>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="rcb-b3-84L">
+                                <rect key="frame" x="0.0" y="160" width="600" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="454874240.731251">
+                                    <!--2015-06-01 17:57:20 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="DYF-gx-TQW" secondAttribute="centerY" constant="216" id="Cz4-fA-mBl"/>
+                            <constraint firstItem="DYF-gx-TQW" firstAttribute="leading" secondItem="WJa-L6-a3a" secondAttribute="leadingMargin" id="ELl-np-mh0"/>
+                            <constraint firstItem="rcb-b3-84L" firstAttribute="top" secondItem="Bgs-TI-0db" secondAttribute="bottom" constant="8" id="FoJ-Di-odh"/>
+                            <constraint firstItem="Bgs-TI-0db" firstAttribute="leading" secondItem="WJa-L6-a3a" secondAttribute="leadingMargin" id="HUz-iA-Ppl"/>
+                            <constraint firstItem="FXL-k3-kRx" firstAttribute="top" secondItem="rcb-b3-84L" secondAttribute="bottom" constant="121" id="Xlc-YE-TiQ"/>
+                            <constraint firstAttribute="centerX" secondItem="FXL-k3-kRx" secondAttribute="centerX" id="YIX-sT-v0U"/>
+                            <constraint firstItem="DYF-gx-TQW" firstAttribute="trailing" secondItem="WJa-L6-a3a" secondAttribute="trailingMargin" id="dqT-fv-Yg6"/>
+                            <constraint firstAttribute="centerY" secondItem="rcb-b3-84L" secondAttribute="centerY" constant="59" id="gBM-Bp-MOj"/>
+                            <constraint firstAttribute="centerX" secondItem="rcb-b3-84L" secondAttribute="centerX" id="kfZ-xT-ONc"/>
+                            <constraint firstItem="rcb-b3-84L" firstAttribute="width" secondItem="WJa-L6-a3a" secondAttribute="width" id="xzj-6U-XCF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="groupEndDate" destination="rcb-b3-84L" id="WkO-l5-hTt"/>
+                        <outlet property="groupName" destination="DYF-gx-TQW" id="T6q-Hh-XyC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nb1-WZ-sjA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1825" y="-4250"/>
+        </scene>
+        <!--Current Groups-->
+        <scene sceneID="4FD-YW-Vp9">
+            <objects>
+                <tableViewController id="qBf-bo-hqx" customClass="ViewGroupsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Xyq-yS-ppa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="d8k-VU-n3W">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d8k-VU-n3W" id="qjN-Ik-Nth">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qBf-bo-hqx" id="6cS-lF-tdk"/>
+                            <outlet property="delegate" destination="qBf-bo-hqx" id="8dh-kt-iTF"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Current Groups" id="toX-5G-LQF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="IUU-Vh-Kg4"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="UiW-8k-XTY" kind="show" identifier="groupSelected" id="TvB-rq-bmQ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JFb-3D-VmC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1825" y="-3444"/>
+        </scene>
+        <!--Group Map View Controller-->
+        <scene sceneID="2FO-ML-dqT">
+            <objects>
+                <viewController id="UiW-8k-XTY" customClass="GroupMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9e9-0u-92T"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kr1-tt-nPz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="huD-OO-9MD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ImI-v7-xrX">
+                                <rect key="frame" x="16" y="550" width="91" height="30"/>
+                                <state key="normal" title="Delete Group">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6QO-OO-bhS">
+                                <rect key="frame" x="484" y="550" width="100" height="30"/>
+                                <state key="normal" title="Save Changes">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Group Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BnX-GV-PmB">
+                                <rect key="frame" x="16" y="162" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5H-bF-KHD">
+                                <rect key="frame" x="256.5" y="285" width="87" height="30"/>
+                                <state key="normal" title="Edit Markers">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="Z5H-bF-KHD" secondAttribute="centerY" id="32h-4J-16X"/>
+                            <constraint firstItem="ImI-v7-xrX" firstAttribute="leading" secondItem="huD-OO-9MD" secondAttribute="leadingMargin" id="RC5-xI-tpH"/>
+                            <constraint firstItem="Kr1-tt-nPz" firstAttribute="top" secondItem="ImI-v7-xrX" secondAttribute="bottom" constant="20" id="f1L-SH-M8B"/>
+                            <constraint firstAttribute="centerX" secondItem="Z5H-bF-KHD" secondAttribute="centerX" id="fHK-uw-BOL"/>
+                            <constraint firstItem="Kr1-tt-nPz" firstAttribute="top" secondItem="6QO-OO-bhS" secondAttribute="bottom" constant="20" id="jqp-Lo-xt6"/>
+                            <constraint firstItem="6QO-OO-bhS" firstAttribute="trailing" secondItem="huD-OO-9MD" secondAttribute="trailingMargin" id="ovy-f1-U6w"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Nc-Pa-tzt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-809" y="-3444"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gcP-di-hZt">
@@ -419,7 +647,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PaM-Wj-VmZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="X0j-AB-rgo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-630" y="-3050"/>
+            <point key="canvasLocation" x="-809" y="-2664"/>
         </scene>
         <!--Add Marker Map View Controller-->
         <scene sceneID="9RH-Ie-6Av">
@@ -438,10 +666,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="POu-yz-BID" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-630" y="-2412"/>
+            <point key="canvasLocation" x="-809" y="-2072"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="A6i-sK-6kd"/>
+        <segue reference="CNu-sJ-dKo"/>
+        <segue reference="Mfs-Vl-Ejx"/>
     </inferredMetricsTieBreakers>
 </document>

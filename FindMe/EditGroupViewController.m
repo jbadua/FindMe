@@ -1,35 +1,22 @@
 //
-//  AuthenticateUserViewController.m
+//  EditGroupViewController.m
 //  FindMe
 //
-//  Created by Jason Badua on 5/15/15.
+//  Created by Jason Badua on 6/2/15.
 //  Copyright (c) 2015 CS 117. All rights reserved.
 //
 
-#import "AuthenticateUserViewController.h"
+#import "EditGroupViewController.h"
 
-#import <Parse/Parse.h>
-
-@interface AuthenticateUserViewController ()
+@interface EditGroupViewController ()
 
 @end
 
-@implementation AuthenticateUserViewController
+@implementation EditGroupViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // User logout used for testing
-    //[PFUser logOut];
-    
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        [self performSegueWithIdentifier:@"curentUserAuthenticated" sender:nil];
-    }
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBarHidden = YES;
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
