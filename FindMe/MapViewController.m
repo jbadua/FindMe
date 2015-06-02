@@ -241,14 +241,20 @@
                             markerPosition.latitude = markerLatitude.doubleValue;
                             markerPosition.longitude = markerLongitude.doubleValue;
                             NSLog(@"Latitude: %f \n Longitude: %f",markerPosition.latitude,markerPosition.longitude);
+                            NSDate *updatedAt = [[NSDate alloc] initWithTimeInterval:-3600*9
+                                                                            sinceDate:[object updatedAt]] ;
+                            
+                            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+                            [dateFormat setDateFormat:@"MMM d, h:mm a"];
                             
                             // TODO: Need to display the last time each person was online
                             GMSMarker *marker = [[GMSMarker alloc] init];
                             marker.title = object[@"username"];
-//                            marker.snippet = timeSinceLastCheckin;
+                            marker.snippet = [NSString stringWithFormat:@"Last Updated: %@", [dateFormat stringFromDate:updatedAt]];
                             marker.position = markerPosition;
                             marker.map = mapView_;
                             marker.icon = [UIImage imageNamed:@"friend_marker.png"];
+                            
                         }
                     } else {
                         // Log details of the failure
