@@ -36,7 +36,7 @@
 
 #pragma mark - Navigation
 
-- (IBAction)addFriends:(UIStoryboardSegue*)sender {
+- (IBAction)addFriends:(UIStoryboardSegue *)sender {
     AddFriendsTableViewController *sourceViewController = sender.sourceViewController;
     NSArray *users = sourceViewController.users;
     NSArray *selectedRows = sourceViewController.indexPathsForSelectedRows;
