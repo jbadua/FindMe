@@ -241,9 +241,7 @@
                             markerPosition.latitude = markerLatitude.doubleValue;
                             markerPosition.longitude = markerLongitude.doubleValue;
                             NSLog(@"Latitude: %f \n Longitude: %f",markerPosition.latitude,markerPosition.longitude);
-                            NSDate *updatedAt = [[NSDate alloc] initWithTimeInterval:-3600*9
-                                                                            sinceDate:[object updatedAt]] ;
-                            
+                            NSDate *updatedAt = [object updatedAt];
                             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
                             [dateFormat setDateFormat:@"MMM d, h:mm a"];
                             
