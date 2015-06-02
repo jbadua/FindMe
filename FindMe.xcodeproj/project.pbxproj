@@ -10,6 +10,7 @@
 		310BC6D01B054C7C009B0377 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 310BC6CF1B054C7C009B0377 /* MainMenuViewController.m */; };
 		31B833861B04100B009150FB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B833851B04100B009150FB /* AddressBook.framework */; };
 		31B833881B041015009150FB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B833871B041014009150FB /* AddressBookUI.framework */; };
+		464BAF791B0BE83800DC79AC /* AddPhotoMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 464BAF781B0BE83800DC79AC /* AddPhotoMarkerViewController.m */; };
 		9653CDBE1AFD51F10068F600 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9653CDBC1AFD51F10068F600 /* Bolts.framework */; };
 		9653CDBF1AFD51F10068F600 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9653CDBD1AFD51F10068F600 /* Parse.framework */; };
 		9653CDC11AFD52440068F600 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9653CDC01AFD52440068F600 /* AudioToolbox.framework */; };
@@ -64,6 +65,8 @@
 		310BC6CF1B054C7C009B0377 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		31B833851B04100B009150FB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		31B833871B041014009150FB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		464BAF771B0BE83800DC79AC /* AddPhotoMarkerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPhotoMarkerViewController.h; sourceTree = "<group>"; };
+		464BAF781B0BE83800DC79AC /* AddPhotoMarkerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPhotoMarkerViewController.m; sourceTree = "<group>"; };
 		9653CDBC1AFD51F10068F600 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		9653CDBD1AFD51F10068F600 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		9653CDC01AFD52440068F600 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -187,6 +190,8 @@
 				969296041B06FDE3006E3B83 /* AuthenticateUserViewController.h */,
 				969296051B06FDE3006E3B83 /* AuthenticateUserViewController.m */,
 				968D17A81AE60FF000468A63 /* Main.storyboard */,
+				464BAF771B0BE83800DC79AC /* AddPhotoMarkerViewController.h */,
+				464BAF781B0BE83800DC79AC /* AddPhotoMarkerViewController.m */,
 				969296071B07072A006E3B83 /* SignInViewController.h */,
 				969296081B07072A006E3B83 /* SignInViewController.m */,
 				9692960A1B0707AF006E3B83 /* NewUserRegistrationViewController.h */,
@@ -314,6 +319,7 @@
 				TargetAttributes = {
 					968D179A1AE60FF000468A63 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = Z5675BQ7TK;
 					};
 					968D17B31AE60FF000468A63 = {
 						CreatedOnToolsVersion = 6.3;
@@ -373,6 +379,7 @@
 				9653CDD41B028EE20068F600 /* AddMarkerViewController.m in Sources */,
 				969296061B06FDE3006E3B83 /* AuthenticateUserViewController.m in Sources */,
 				968D17A11AE60FF000468A63 /* main.m in Sources */,
+				464BAF791B0BE83800DC79AC /* AddPhotoMarkerViewController.m in Sources */,
 				969296031B054E0E006E3B83 /* AddMarkerMapViewController.m in Sources */,
 				310BC6D01B054C7C009B0377 /* MainMenuViewController.m in Sources */,
 			);
@@ -500,6 +507,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FindMe",
@@ -508,6 +517,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -515,6 +525,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FindMe",
@@ -523,6 +535,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
