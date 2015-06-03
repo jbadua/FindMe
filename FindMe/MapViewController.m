@@ -196,7 +196,8 @@
 
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.title = @"photo";
-    marker.icon = sourceViewController.selectedImage;
+    marker.icon = [self imageWithImage:sourceViewController.selectedImage
+                          scaledToSize:CGSizeMake(25, 25)];
     marker.position = childViewController.markerPosition;
     marker.map = mapView_;
 
@@ -204,13 +205,26 @@
     PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
 
     // Disable saving to parse while testing
-    PFObject *textMarker = [PFObject objectWithClassName:@"PhotoMarker"];
-    textMarker[@"title"] = marker.title;
-    textMarker[@"imageFile"] = imageFile;
-    textMarker[@"latitude"] = [NSNumber numberWithDouble:marker.position.latitude];
-    textMarker[@"longitude"] = [NSNumber numberWithDouble:marker.position.longitude];
-    textMarker[@"createdBy"] = [PFUser currentUser].objectId;
-    [textMarker saveInBackground];
+    PFObject *photoMarker = [PFObject objectWithClassName:@"PhotoMarker"];
+    photoMarker[@"title"] = marker.title;
+    photoMarker[@"imageFile"] = imageFile;
+    photoMarker[@"latitude"] = [NSNumber numberWithDouble:marker.position.latitude];
+    photoMarker[@"longitude"] = [NSNumber numberWithDouble:marker.position.longitude];
+    photoMarker[@"createdBy"] = [PFUser currentUser].objectId;
+    [photoMarker saveInBackground];
+}
+
+#pragma mark - Image utilities
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 #pragma mark - KVO updates
