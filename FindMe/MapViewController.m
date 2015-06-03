@@ -24,12 +24,14 @@
 
 @implementation MapViewController {
     BOOL firstLocationUpdate_;
+    CGSize scaledImageSize_;
     GMSMapView *mapView_;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    scaledImageSize_ = CGSizeMake(25, 25);
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868
                                                             longitude:151.2086
                                                                  zoom:12];
@@ -57,7 +59,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         mapView_.myLocationEnabled = YES;
     });
-    [self addExistingMarkers];
+    [self displayExistingMarkers];
     [self getFriendsLocations];
     
     [NSTimer scheduledTimerWithTimeInterval:4.0f
@@ -73,7 +75,7 @@
                      context:NULL];
 }
 
-- (void)addExistingMarkers {
+- (void)displayExistingMarkers {
     PFQuery *textMarkerQuery = [PFQuery queryWithClassName:@"TextMarker"];
     [textMarkerQuery whereKey:@"createdBy" equalTo:[PFUser currentUser].objectId];
     [textMarkerQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -108,10 +110,10 @@
     [photoMarkerQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
+            // NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
             // Do something with the found objects
             for (PFObject *object in objects) {
-                NSLog(@"%@", object.objectId);
+                //NSLog(@"%@", object.objectId);
 
                 // Coordinates stored as NSNumbers in Parse
                 NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
@@ -120,12 +122,20 @@
                 markerPosition.latitude = markerLatitude.doubleValue;
                 markerPosition.longitude = markerLongitude.doubleValue;
 
-                GMSMarker *marker = [[GMSMarker alloc] init];
+                PFFile *imageFile = object[@"imageFile"];
+                [imageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                    if (!error) {
+                        UIImage *image = [UIImage imageWithData:imageData];
 
-                marker.title = object[@"title"];
-                marker.icon = object[@"image"];
-                marker.position = markerPosition;
-                marker.map = mapView_;
+                        GMSMarker *marker = [[GMSMarker alloc] init];
+                        marker.title = object[@"title"];
+                        marker.snippet = object.objectId;
+                        marker.icon = [self imageWithImage:image
+                                              scaledToSize:scaledImageSize_];
+                        marker.position = markerPosition;
+                        marker.map = mapView_;
+                    }
+                }];
             }
         } else {
             // Log details of the failure
@@ -193,25 +203,25 @@
     NSArray *childViewControllers = sourceViewController.childViewControllers;
     AddMarkerMapViewController *childViewController = childViewControllers[0];
 
-
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.title = @"photo";
-    marker.icon = [self imageWithImage:sourceViewController.selectedImage
-                          scaledToSize:CGSizeMake(25, 25)];
-    marker.position = childViewController.markerPosition;
-    marker.map = mapView_;
-
     NSData *imageData = UIImagePNGRepresentation(sourceViewController.selectedImage);
     PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+    CLLocationCoordinate2D markerPosition = childViewController.markerPosition;
 
-    // Disable saving to parse while testing
     PFObject *photoMarker = [PFObject objectWithClassName:@"PhotoMarker"];
-    photoMarker[@"title"] = marker.title;
+    photoMarker[@"title"] = @"Photo";
     photoMarker[@"imageFile"] = imageFile;
-    photoMarker[@"latitude"] = [NSNumber numberWithDouble:marker.position.latitude];
-    photoMarker[@"longitude"] = [NSNumber numberWithDouble:marker.position.longitude];
+    photoMarker[@"latitude"] = [NSNumber numberWithDouble:markerPosition.latitude];
+    photoMarker[@"longitude"] = [NSNumber numberWithDouble:markerPosition.longitude];
     photoMarker[@"createdBy"] = [PFUser currentUser].objectId;
-    [photoMarker saveInBackground];
+    [photoMarker saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        GMSMarker *marker = [[GMSMarker alloc] init];
+        marker.title = photoMarker[@"title"];
+        marker.snippet = photoMarker.objectId;
+        marker.icon = [self imageWithImage:sourceViewController.selectedImage
+                              scaledToSize:scaledImageSize_];
+        marker.position = childViewController.markerPosition;
+        marker.map = mapView_;
+    }];
 }
 
 #pragma mark - Image utilities
@@ -336,8 +346,5 @@
         }
      }];
 }
-
-    
-         
 
 @end
