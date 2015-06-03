@@ -12,6 +12,7 @@
 #import "AddMarkerViewController.h"
 #import "AddMarkerMapViewController.h"
 #import "AddPhotoMarkerViewController.h"
+#import "ViewPhotoMarkerViewController.h"
 
 #import <GoogleMaps/GoogleMaps.h>
 #import <Parse/Parse.h>
@@ -19,6 +20,7 @@
 @interface MapViewController ()
 
 @property (nonatomic, strong) NSArray *friends;
+@property (nonatomic, copy) NSString *photoMarkerObjectId;
 
 @end
 
@@ -213,6 +215,7 @@
     photoMarker[@"latitude"] = [NSNumber numberWithDouble:markerPosition.latitude];
     photoMarker[@"longitude"] = [NSNumber numberWithDouble:markerPosition.longitude];
     photoMarker[@"createdBy"] = [PFUser currentUser].objectId;
+    // GMSMarker created after photoMarker is saved to get objectId
     [photoMarker saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         GMSMarker *marker = [[GMSMarker alloc] init];
         marker.title = photoMarker[@"title"];
@@ -224,11 +227,22 @@
     }];
 }
 
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"showPhoto"]) {
+        ViewPhotoMarkerViewController *destination =
+            (ViewPhotoMarkerViewController *)segue.destinationViewController;
+        destination.photoMarkerObjectId = self.photoMarkerObjectId;
+    }
+}
+
 #pragma mark - Image utilities
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
-    //UIGraphicsBeginImageContext(newSize);
-    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // In next line, pass 0.0 to use the current device's pixel scaling factor
+    // (and thus account for Retina resolution).
     // Pass 1.0 to force exact pixel size.
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
     [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
@@ -258,8 +272,10 @@
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
     // Photos have a photo as it's title
     if ([marker.title isEqualToString:@"Photo"]) {
-        // Photos have the photo name as the snippet
-        NSLog(@"%@", marker.snippet);
+        // Photos have the photo objectId as the snippet
+        NSLog(@"Tapped Marker");
+        self.photoMarkerObjectId = marker.snippet;
+        [self performSegueWithIdentifier:@"showPhoto" sender:self];
         return YES;
     } else {
         return NO;
@@ -268,6 +284,10 @@
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
+    if ([marker.snippet containsString:@"Last Updated:"]) {
+        // Users shouldn't be deleted from mapView
+        return;
+    }
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Delete Marker?"
                                                                    message:@"Would you like to remove this marker from the map?"
                                                             preferredStyle:UIAlertControllerStyleAlert];
@@ -279,7 +299,9 @@
                                                               
     }];
     
-    UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction *action) {
         
     }];
     
