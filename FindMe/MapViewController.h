@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import <GoogleMaps/GoogleMaps.h>
 
 @interface MapViewController : UIViewController <GMSMapViewDelegate>
+
+- (void)displayExistingMarkers:(NSString *)creator;
+- (void)deleteMarker:(GMSMarker *)marker byCreator:(NSString *)creator;
 
 @end

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GroupMapViewController : UIViewController
+#import <GoogleMaps/GoogleMaps.h>
+
+@interface GroupMapViewController : UIViewController <GMSMapViewDelegate>
 
 @property (nonatomic, copy) NSString *groupObjectId;
 

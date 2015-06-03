@@ -14,7 +14,6 @@
 #import "AddPhotoMarkerViewController.h"
 #import "ViewPhotoMarkerViewController.h"
 
-#import <GoogleMaps/GoogleMaps.h>
 #import <Parse/Parse.h>
 
 @interface MapViewController ()
@@ -62,7 +61,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         mapView_.myLocationEnabled = YES;
     });
-    [self displayExistingMarkers];
+    [self displayExistingMarkers:[PFUser currentUser].objectId];
     [self getFriendsLocations];
     
     [NSTimer scheduledTimerWithTimeInterval:4.0f
@@ -78,9 +77,27 @@
                      context:NULL];
 }
 
-- (void)displayExistingMarkers {
+#pragma mark - KVO updates
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    if (!firstLocationUpdate_) {
+        // If the first location update has not yet been recieved, then jump to that
+        // location.
+        firstLocationUpdate_ = YES;
+        CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
+        mapView_.camera = [GMSCameraPosition cameraWithTarget:location.coordinate
+                                                         zoom:14];
+    }
+}
+
+#pragma mark - Marker Methods
+
+- (void)displayExistingMarkers:(NSString *)creator {
     PFQuery *textMarkerQuery = [PFQuery queryWithClassName:@"TextMarker"];
-    [textMarkerQuery whereKey:@"createdBy" equalTo:[PFUser currentUser].objectId];
+    [textMarkerQuery whereKey:@"createdBy" equalTo:creator];
     [textMarkerQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
@@ -106,7 +123,7 @@
     }];
 
     PFQuery *photoMarkerQuery = [PFQuery queryWithClassName:@"PhotoMarker"];
-    [photoMarkerQuery whereKey:@"createdBy" equalTo:[PFUser currentUser].objectId];
+    [photoMarkerQuery whereKey:@"createdBy" equalTo:creator];
     [photoMarkerQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
@@ -141,13 +158,13 @@
     }];
 }
 
-- (void)deleteMarker:(GMSMarker *)marker {
+- (void)deleteMarker:(GMSMarker *)marker byCreator:(NSString *)creator {
     // Remove marker from map
     marker.map = nil;
 
     // Remove marker from Parse
     PFQuery *query = [PFQuery queryWithClassName:@"TextMarker"];
-    [query whereKey:@"createdBy" equalTo:[PFUser currentUser].objectId];
+    [query whereKey:@"createdBy" equalTo:creator];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
@@ -157,7 +174,8 @@
                 
                 NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
                 NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
-                
+
+                // TODO: change to query constraints
                 if (markerPosition.longitude == markerLongitude.doubleValue
                     && markerPosition.latitude == markerLatitude.doubleValue){
                     [object deleteInBackground];
@@ -246,29 +264,12 @@
     return newImage;
 }
 
-#pragma mark - KVO updates
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
-    if (!firstLocationUpdate_) {
-        // If the first location update has not yet been recieved, then jump to that
-        // location.
-        firstLocationUpdate_ = YES;
-        CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
-        mapView_.camera = [GMSCameraPosition cameraWithTarget:location.coordinate
-                                                         zoom:14];
-    }
-}
-
 #pragma mark - GMSMapViewDelegate Methods
 
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
     // Photos have a photo as it's title
     if ([marker.title isEqualToString:@"Photo"]) {
         // Photos have the photo objectId as the snippet
-        NSLog(@"Tapped Marker");
         self.photoMarkerObjectId = marker.snippet;
         [self performSegueWithIdentifier:@"showPhoto" sender:self];
         return YES;
@@ -283,22 +284,23 @@
         // Users shouldn't be deleted from mapView
         return;
     }
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Delete Marker?"
-                                                                   message:@"Would you like to remove this marker from the map?"
-                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController* alert =
+        [UIAlertController alertControllerWithTitle:@"Delete Marker"
+                                            message:@"Would you like to delete this marker?"
+                                     preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive
-                                                          handler:^(UIAlertAction * action) {
-                                                              [self deleteMarker:marker];
-                                                              marker.map = nil;
-                                                              
-    }];
+    UIAlertAction* defaultAction =
+        [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive
+                               handler:^(UIAlertAction * action) {
+                                   NSString *userObjectId =[PFUser currentUser].objectId;
+                                   [self deleteMarker:marker byCreator:userObjectId];
+                                   marker.map = nil;
+                               }];
     
     UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel"
                                                            style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction *action) {
-        
-    }];
+                                                         }];
     
     [alert addAction:defaultAction];
     [alert addAction:cancelButton];
