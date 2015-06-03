@@ -79,7 +79,6 @@
     group[@"members"] = usersInGroup;
     group[@"groupName"] = self.groupName.text;
     group[@"endDate"] = self.groupEndDate.date;
-    NSLog(@"%@", self.groupEndDate.date);
     [group saveInBackground];
 }
 

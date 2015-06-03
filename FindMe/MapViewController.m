@@ -20,6 +20,7 @@
 @interface MapViewController ()
 
 @property (nonatomic, strong) NSArray *friends;
+// Used to send tapped photoMarker's objectID to ViewPhotoMarkerViewController
 @property (nonatomic, copy) NSString *photoMarkerObjectId;
 
 @end
@@ -83,11 +84,8 @@
     [textMarkerQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
             // Do something with the found objects
             for (PFObject *object in objects) {
-                NSLog(@"%@", object.objectId);
-
                 // Coordinates stored as NSNumbers in Parse
                 NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
                 NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
@@ -112,11 +110,8 @@
     [photoMarkerQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            // NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
             // Do something with the found objects
             for (PFObject *object in objects) {
-                //NSLog(@"%@", object.objectId);
-
                 // Coordinates stored as NSNumbers in Parse
                 NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
                 NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
@@ -147,17 +142,17 @@
 }
 
 - (void)deleteMarker:(GMSMarker *)marker {
-    
+    // Remove marker from map
+    marker.map = nil;
+
+    // Remove marker from Parse
     PFQuery *query = [PFQuery queryWithClassName:@"TextMarker"];
     [query whereKey:@"createdBy" equalTo:[PFUser currentUser].objectId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
             // Do something with the found objects
             for (PFObject *object in objects) {
-                NSLog(@"%@", object.objectId);
-                
                 CLLocationCoordinate2D markerPosition = marker.position;
                 
                 NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
@@ -316,14 +311,13 @@
 #pragma mark - FriendMarker Methods
 
 - (void)getFriendsLocations {
-    
     PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friends"];
     [friendQuery whereKey:@"a" equalTo:[PFUser currentUser].objectId];
     [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             self.friends = objects;
             // The find succeeded.
-            NSLog(@"Successfully retrieved %lu friends.", (unsigned long)objects.count);
+            // NSLog(@"Successfully retrieved %lu friends.", (unsigned long)objects.count);
             
             for(PFObject *friend in self.friends){
                 PFQuery *locationQuery = [PFUser query];
@@ -331,23 +325,19 @@
                 [locationQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                     if (!error) {
                         // The find succeeded.
-                        NSLog(@"Successfully retrieved %lu friends test.", (unsigned long)objects.count);
+                        // NSLog(@"Successfully retrieved %lu friends test.", (unsigned long)objects.count);
                         // Do something with the found objects
                         for (PFObject *object in objects) {
-                            NSLog(@"%@", object.objectId);
-                            
                             // Coordinates stored as NSNumbers in Parse
                             NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
                             NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
                             CLLocationCoordinate2D markerPosition;
                             markerPosition.latitude = markerLatitude.doubleValue;
                             markerPosition.longitude = markerLongitude.doubleValue;
-                            NSLog(@"Latitude: %f \n Longitude: %f",markerPosition.latitude,markerPosition.longitude);
                             NSDate *updatedAt = [object updatedAt];
                             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
                             [dateFormat setDateFormat:@"MMM d, h:mm a"];
-                            
-                            // TODO: Need to display the last time each person was online
+
                             GMSMarker *marker = [[GMSMarker alloc] init];
                             marker.title = object[@"username"];
                             marker.snippet = [NSString stringWithFormat:@"Last Updated: %@", [dateFormat stringFromDate:updatedAt]];

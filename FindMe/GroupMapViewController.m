@@ -8,6 +8,7 @@
 
 #import "GroupMapViewController.h"
 
+#import <GoogleMaps/GoogleMaps.h>
 #import <Parse/Parse.h>
 
 @interface GroupMapViewController ()
@@ -22,7 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"Group Object Id: %@", self.groupObjectId);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,14 +33,14 @@
 // Overrides MapViewController's addExistingMarkers
 - (void)addExistingMarkers {
     PFQuery *textMarkerQuery = [PFQuery queryWithClassName:@"TextMarker"];
-    [textMarkerQuery whereKey:@"groupId" equalTo:self.groupObjectId];
+    // TODO: objectIds are only unique per class. Change createdBy to lead with
+    // "u" for user markers and "g" for group markers
+    [textMarkerQuery whereKey:@"createdBy" equalTo:self.groupObjectId];
     [textMarkerQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
             // Do something with the found objects
             for (PFObject *object in objects) {
-                NSLog(@"%@", object.objectId);
 
                 // Coordinates stored as NSNumbers in Parse
                 NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
@@ -67,11 +67,8 @@
     [photoMarkerQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
             // Do something with the found objects
             for (PFObject *object in objects) {
-                NSLog(@"%@", object.objectId);
-
                 // Coordinates stored as NSNumbers in Parse
                 NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
                 NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];

@@ -75,12 +75,8 @@
     [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-//             The find succeeded.
-//            NSLog(@"Successfully retrieved %lu Users.", (unsigned long)objects.count);
-
+            //   The find succeeded.
             for (PFObject *object in objects) {
-                NSLog(@"%@", object.objectId);
-                
                 NSNumber* newLatitude = [NSNumber numberWithDouble:self.locationManager.location.coordinate.latitude];
                 NSNumber* newLongitude = [NSNumber numberWithDouble:self.locationManager.location.coordinate.longitude];
                 NSLog(@"New Longitude: %@", newLongitude);

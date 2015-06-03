@@ -38,10 +38,8 @@ typedef NS_ENUM(NSInteger, InviteSection) {
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
             // Do something with the found objects
             for (PFObject *object in objects) {
-                NSLog(@"%@", object.objectId);
             }
         } else {
             // Log details of the failure
@@ -54,10 +52,8 @@ typedef NS_ENUM(NSInteger, InviteSection) {
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
             // Do something with the found objects
             for (PFObject *object in objects) {
-                NSLog(@"%@", object.objectId);
             }
         } else {
             // Log details of the failure

@@ -36,14 +36,12 @@
     PFQuery *query = [PFUser query];
     [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSLog(@"Test");
         if (!error) {
             // The find succeeded
             NSMutableArray *usersTemp = [[NSMutableArray alloc] initWithCapacity:objects.count];
             // TODO: Not include current friends
             for (PFObject *object in objects) {
                 [usersTemp addObject:object];
-                NSLog(@"%@", object.objectId);
             }
             self.users = usersTemp;
             [self.tableView reloadData]; // data may be loaded after the view

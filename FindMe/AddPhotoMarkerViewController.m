@@ -88,7 +88,6 @@
     self.imageView.image = self.selectedImage;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    NSLog(@"Delegate");
    // self.imageView.image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     
 }

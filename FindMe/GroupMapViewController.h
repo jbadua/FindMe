@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 CS 117. All rights reserved.
 //
 
-#import "MapViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface GroupMapViewController : MapViewController
+@interface GroupMapViewController : UIViewController
 
 @property (nonatomic, copy) NSString *groupObjectId;
 

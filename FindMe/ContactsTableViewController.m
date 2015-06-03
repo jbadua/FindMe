@@ -181,7 +181,6 @@ enum TableRowSelected
 {
     NSString *selectedName = self.allContactNames[indexPath.row];
     NSInteger numSelectedPeople = [self.recipients count];
-    NSLog(@"%ld", (long)numSelectedPeople);
     for (int i = 0; i < numSelectedPeople; i++) {
 //        ABRecordRef person = (__bridge ABRecordRef)self.recipients[i];
         NSString *firstName = (__bridge NSString *)(ABRecordCopyValue((__bridge ABRecordRef)([self.recipients objectAtIndex:i]), kABPersonFirstNameProperty));

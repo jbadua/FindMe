@@ -63,11 +63,8 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
             // Do something with the found objects
             for (PFObject *object in objects) {
-                NSLog(@"%@", object.objectId);
-
                 // Coordinates stored as NSNumbers in Parse
                 NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
                 NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
