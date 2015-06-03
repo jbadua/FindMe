@@ -13,12 +13,27 @@
 @synthesize imageView;
 @synthesize selectedImage;
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    UIBarButtonItem *rightButton =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+                                                  target:self
+                                                  action:@selector(addNewPhotoMarker:)];
+    self.tabBarController.navigationItem.rightBarButtonItem = rightButton;
+}
+
+- (IBAction)addNewPhotoMarker:(id)sender {
+    [self performSegueWithIdentifier:@"unwindToMapViewController" sender:self];
+}
+
 - (IBAction)showActionSheet:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select where to add photo marker from:"
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Take Photo", @"Select from Photo Library", nil];
+    UIActionSheet *actionSheet =
+        [[UIActionSheet alloc] initWithTitle:@"Select where to add photo marker from:"
+                                    delegate:self
+                           cancelButtonTitle:@"Cancel"
+                      destructiveButtonTitle:nil
+                           otherButtonTitles:@"Take Photo", @"Select from Photo Library", nil];
     
     actionSheet.tag = 1;
     [actionSheet showInView:self.view];
@@ -28,11 +43,8 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         [self takePhoto:nil];
-        // take photo
     }
     else if (buttonIndex == 1) {
-        NSLog(@"select from existing");
-        
         [self selectPhoto:nil];
     }
 }
@@ -82,9 +94,7 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
 }
 
 @end

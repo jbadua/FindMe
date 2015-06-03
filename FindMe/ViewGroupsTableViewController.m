@@ -78,7 +78,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    PFObject *selectedGroup = self.groups[indexPath.row];
+    self.indexPath = indexPath;
     [self performSegueWithIdentifier:@"groupSelected" sender:self];
 }
 

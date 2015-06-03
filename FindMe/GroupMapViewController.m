@@ -30,10 +30,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+// Overrides MapViewController's addExistingMarkers
 - (void)addExistingMarkers {
-    PFQuery *query = [PFQuery queryWithClassName:@"Group"];
-    [query whereKey:@"createdBy" equalTo:[PFUser currentUser].objectId];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    PFQuery *textMarkerQuery = [PFQuery queryWithClassName:@"TextMarker"];
+    [textMarkerQuery whereKey:@"groupId" equalTo:self.groupObjectId];
+    [textMarkerQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
             NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
@@ -49,8 +50,39 @@
                 markerPosition.longitude = markerLongitude.doubleValue;
 
                 GMSMarker *marker = [[GMSMarker alloc] init];
+
                 marker.title = object[@"title"];
                 marker.snippet = object[@"snippet"];
+                marker.position = markerPosition;
+                marker.map = mapView_;
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+
+    PFQuery *photoMarkerQuery = [PFQuery queryWithClassName:@"PhotoMarker"];
+    [photoMarkerQuery whereKey:@"groupId" equalTo:self.groupObjectId];
+    [photoMarkerQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+
+                // Coordinates stored as NSNumbers in Parse
+                NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
+                NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
+                CLLocationCoordinate2D markerPosition;
+                markerPosition.latitude = markerLatitude.doubleValue;
+                markerPosition.longitude = markerLongitude.doubleValue;
+
+                GMSMarker *marker = [[GMSMarker alloc] init];
+
+                marker.title = object[@"title"];
+                marker.icon = object[@"image"];
                 marker.position = markerPosition;
                 marker.map = mapView_;
             }

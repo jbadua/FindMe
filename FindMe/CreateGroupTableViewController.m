@@ -79,6 +79,7 @@
     group[@"members"] = usersInGroup;
     group[@"groupName"] = self.groupName.text;
     group[@"endDate"] = self.groupEndDate.date;
+    NSLog(@"%@", self.groupEndDate.date);
     [group saveInBackground];
 }
 
@@ -148,7 +149,7 @@
 
      if ([segue.identifier isEqualToString:@"newGroupCreated"]) {
          [self createGroup];
-         [self.navigationController popViewControllerAnimated:NO];
+         [self.navigationController popViewControllerAnimated:YES];
      }
  }
 

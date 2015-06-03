@@ -18,6 +18,10 @@
 }
 
 - (void)viewDidLoad {
+    // A text view is a scroll view. iOS 7 will add a content offset automatically to scroll views,
+    // as it assumes they will want to scroll up behind the nav bar and title bar.
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
     // Adds border to markerSnippet text view
     UIColor *borderColor = [UIColor colorWithRed:204.0/255.0
                                            green:204.0/255.0
@@ -35,6 +39,20 @@
     self.markerSnippet.textColor = placeholderTextColor_;
     self.markerSnippet.text = @"Description";
     self.markerSnippet.delegate = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    UIBarButtonItem *rightButton =
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+                                                      target:self
+                                                      action:@selector(addNewMarker:)];
+    self.tabBarController.navigationItem.rightBarButtonItem = rightButton;
+}
+
+- (IBAction)addNewMarker:(id)sender {
+    [self performSegueWithIdentifier:@"unwindToMapViewController" sender:self];
 }
 
 #pragma mark - UITextViewDelegate Methods

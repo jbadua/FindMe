@@ -11,6 +11,7 @@
 #import "MapViewController.h"
 #import "AddMarkerViewController.h"
 #import "AddMarkerMapViewController.h"
+#import "AddPhotoMarkerViewController.h"
 
 #import <GoogleMaps/GoogleMaps.h>
 #import <Parse/Parse.h>
@@ -59,11 +60,11 @@
     [self addExistingMarkers];
     [self getFriendsLocations];
     
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:60.0f
-                                                      target:self
-                                                    selector:@selector(getFriendsLocations)
-                                                    userInfo:nil
-                                                     repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:4.0f
+                                     target:self
+                                   selector:@selector(getFriendsLocations)
+                                   userInfo:nil
+                                    repeats:YES];
 }
 
 - (void)dealloc {
@@ -73,9 +74,9 @@
 }
 
 - (void)addExistingMarkers {
-    PFQuery *query = [PFQuery queryWithClassName:@"TextMarker"];
-    [query whereKey:@"createdBy" equalTo:[PFUser currentUser].objectId];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    PFQuery *textMarkerQuery = [PFQuery queryWithClassName:@"TextMarker"];
+    [textMarkerQuery whereKey:@"createdBy" equalTo:[PFUser currentUser].objectId];
+    [textMarkerQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
             NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
@@ -93,6 +94,36 @@
                 GMSMarker *marker = [[GMSMarker alloc] init];
                 marker.title = object[@"title"];
                 marker.snippet = object[@"snippet"];
+                marker.position = markerPosition;
+                marker.map = mapView_;
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+
+    PFQuery *photoMarkerQuery = [PFQuery queryWithClassName:@"PhotoMarker"];
+    [photoMarkerQuery whereKey:@"createdBy" equalTo:[PFUser currentUser].objectId];
+    [photoMarkerQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu Markers.", (unsigned long)objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+
+                // Coordinates stored as NSNumbers in Parse
+                NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
+                NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
+                CLLocationCoordinate2D markerPosition;
+                markerPosition.latitude = markerLatitude.doubleValue;
+                markerPosition.longitude = markerLongitude.doubleValue;
+
+                GMSMarker *marker = [[GMSMarker alloc] init];
+
+                marker.title = object[@"title"];
+                marker.icon = object[@"image"];
                 marker.position = markerPosition;
                 marker.map = mapView_;
             }
@@ -151,6 +182,31 @@
     PFObject *textMarker = [PFObject objectWithClassName:@"TextMarker"];
     textMarker[@"title"] = marker.title;
     textMarker[@"snippet"] = marker.snippet;
+    textMarker[@"latitude"] = [NSNumber numberWithDouble:marker.position.latitude];
+    textMarker[@"longitude"] = [NSNumber numberWithDouble:marker.position.longitude];
+    textMarker[@"createdBy"] = [PFUser currentUser].objectId;
+    [textMarker saveInBackground];
+}
+
+- (IBAction)addNewPhotoMarker:(UIStoryboardSegue*)sender {
+    AddPhotoMarkerViewController *sourceViewController = sender.sourceViewController;
+    NSArray *childViewControllers = sourceViewController.childViewControllers;
+    AddMarkerMapViewController *childViewController = childViewControllers[0];
+
+
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.title = @"photo";
+    marker.icon = sourceViewController.selectedImage;
+    marker.position = childViewController.markerPosition;
+    marker.map = mapView_;
+
+    NSData *imageData = UIImagePNGRepresentation(sourceViewController.selectedImage);
+    PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+
+    // Disable saving to parse while testing
+    PFObject *textMarker = [PFObject objectWithClassName:@"PhotoMarker"];
+    textMarker[@"title"] = marker.title;
+    textMarker[@"imageFile"] = imageFile;
     textMarker[@"latitude"] = [NSNumber numberWithDouble:marker.position.latitude];
     textMarker[@"longitude"] = [NSNumber numberWithDouble:marker.position.longitude];
     textMarker[@"createdBy"] = [PFUser currentUser].objectId;

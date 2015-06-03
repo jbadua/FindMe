@@ -10,6 +10,6 @@
 
 @interface GroupMapViewController : MapViewController
 
-@property (nonatomic) NSString *groupObjectId;
+@property (nonatomic, copy) NSString *groupObjectId;
 
 @end
