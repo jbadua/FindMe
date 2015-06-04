@@ -7,10 +7,17 @@
 //
 
 #import "GroupMapViewController.h"
+#import "AddMarkerViewController.h"
+#import "AddMarkerMapViewController.h"
+#import "AddPhotoMarkerViewController.h"
+#import "ViewPhotoMarkerViewController.h"
 
 #import <Parse/Parse.h>
 
 @interface GroupMapViewController ()
+
+// Used to send tapped photoMarker's objectID to ViewPhotoMarkerViewController
+@property (nonatomic, copy) NSString *photoMarkerObjectId;
 
 @end
 
@@ -50,13 +57,13 @@
         mapView_.myLocationEnabled = YES;
     });
     [self displayExistingMarkers:self.groupObjectId];
-    /*[self getFriendsLocations];
+    [self getGroupMemberLocations];
 
     [NSTimer scheduledTimerWithTimeInterval:4.0f
                                      target:self
-                                   selector:@selector(getFriendsLocations)
+                                   selector:@selector(getGroupMemberLocations)
                                    userInfo:nil
-                                    repeats:YES];*/
+                                    repeats:YES];
 
 }
 
@@ -147,6 +154,99 @@
     }];
 }
 
+- (void)deleteMarker:(GMSMarker *)marker byCreator:(NSString *)creator {
+    // Remove marker from map
+    marker.map = nil;
+
+    // Remove marker from Parse
+    PFQuery *query = [PFQuery queryWithClassName:@"TextMarker"];
+    [query whereKey:@"createdBy" equalTo:creator];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                CLLocationCoordinate2D markerPosition = marker.position;
+
+                NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
+                NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
+
+                // TODO: change to query constraints
+                if (markerPosition.longitude == markerLongitude.doubleValue
+                    && markerPosition.latitude == markerLatitude.doubleValue){
+                    [object deleteInBackground];
+                }
+
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+#pragma mark - Navigation
+
+- (IBAction)addNewMarker:(UIStoryboardSegue*)sender {
+    AddMarkerViewController *sourceViewController = sender.sourceViewController;
+    NSArray *childViewControllers = sourceViewController.childViewControllers;
+    AddMarkerMapViewController *childViewController = childViewControllers[0];
+
+
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.title = sourceViewController.markerTitle.text;
+    marker.snippet = sourceViewController.markerSnippet.text;
+    marker.position = childViewController.markerPosition;
+    marker.map = mapView_;
+
+    // Disable saving to parse while testing
+    PFObject *textMarker = [PFObject objectWithClassName:@"TextMarker"];
+    textMarker[@"title"] = marker.title;
+    textMarker[@"snippet"] = marker.snippet;
+    textMarker[@"latitude"] = [NSNumber numberWithDouble:marker.position.latitude];
+    textMarker[@"longitude"] = [NSNumber numberWithDouble:marker.position.longitude];
+    textMarker[@"createdBy"] = self.groupObjectId;
+    [textMarker saveInBackground];
+}
+
+- (IBAction)addNewPhotoMarker:(UIStoryboardSegue*)sender {
+    AddPhotoMarkerViewController *sourceViewController = sender.sourceViewController;
+    NSArray *childViewControllers = sourceViewController.childViewControllers;
+    AddMarkerMapViewController *childViewController = childViewControllers[0];
+
+    NSData *imageData = UIImagePNGRepresentation(sourceViewController.selectedImage);
+    PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+    CLLocationCoordinate2D markerPosition = childViewController.markerPosition;
+
+    PFObject *photoMarker = [PFObject objectWithClassName:@"PhotoMarker"];
+    photoMarker[@"title"] = @"Photo";
+    photoMarker[@"imageFile"] = imageFile;
+    photoMarker[@"latitude"] = [NSNumber numberWithDouble:markerPosition.latitude];
+    photoMarker[@"longitude"] = [NSNumber numberWithDouble:markerPosition.longitude];
+    photoMarker[@"createdBy"] = self.groupObjectId;
+    // GMSMarker created after photoMarker is saved to get objectId
+    [photoMarker saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        GMSMarker *marker = [[GMSMarker alloc] init];
+        marker.title = photoMarker[@"title"];
+        marker.snippet = photoMarker.objectId;
+        marker.icon = [self imageWithImage:sourceViewController.selectedImage
+                              scaledToSize:scaledImageSize_];
+        marker.position = childViewController.markerPosition;
+        marker.map = mapView_;
+    }];
+}
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"showPhoto"]) {
+        ViewPhotoMarkerViewController *destination =
+        (ViewPhotoMarkerViewController *)segue.destinationViewController;
+        destination.photoMarkerObjectId = self.photoMarkerObjectId;
+    }
+}
+
 #pragma mark - Image utilities
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
@@ -160,14 +260,105 @@
     return newImage;
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - GMSMapViewDelegate Methods
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
+    // Photos have a photo as it's title
+    if ([marker.title isEqualToString:@"Photo"]) {
+        // Photos have the photo objectId as the snippet
+        self.photoMarkerObjectId = marker.snippet;
+        [self performSegueWithIdentifier:@"showPhoto" sender:self];
+        return YES;
+    } else {
+        return NO;
+    }
+
 }
-*/
+
+- (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
+    if ([marker.snippet containsString:@"Last Updated:"]) {
+        // Users shouldn't be deleted from mapView
+        return;
+    }
+    UIAlertController* alert =
+    [UIAlertController alertControllerWithTitle:@"Delete Marker"
+                                        message:@"Would you like to delete this marker?"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* defaultAction =
+    [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive
+                           handler:^(UIAlertAction * action) {
+                               NSString *userObjectId =[PFUser currentUser].objectId;
+                               [self deleteMarker:marker byCreator:userObjectId];
+                               marker.map = nil;
+                           }];
+
+    UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction *action) {
+                                                         }];
+
+    [alert addAction:defaultAction];
+    [alert addAction:cancelButton];
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+
+
+
+#pragma mark - FriendMarker Methods
+
+- (void)getGroupMemberLocations {
+    PFQuery *groupQuery = [PFQuery queryWithClassName:@"Group"];
+    [groupQuery whereKey:@"objectId" equalTo:self.groupObjectId];
+    [groupQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            // NSLog(@"Successfully retrieved %lu friends.", (unsigned long)objects.count);
+            for (NSString *userObjectId in objects[0][@"members"]){
+                // Don't display current user as a friendMarker
+                if ([userObjectId isEqualToString:[PFUser currentUser].objectId]) {
+                    continue;
+                }
+                PFQuery *userQuery = [PFUser query];
+                [userQuery whereKey:@"objectId" equalTo:userObjectId];
+                [userQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    ///////////////
+                    if (!error) {
+                        // The find succeeded.
+                        // NSLog(@"Successfully retrieved %lu friends test.", (unsigned long)objects.count);
+                        // Do something with the found objects
+                        for (PFObject *object in objects) {
+                            // Coordinates stored as NSNumbers in Parse
+                            NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
+                            NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
+                            CLLocationCoordinate2D markerPosition;
+                            markerPosition.latitude = markerLatitude.doubleValue;
+                            markerPosition.longitude = markerLongitude.doubleValue;
+                            NSDate *updatedAt = [object updatedAt];
+                            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+                            [dateFormat setDateFormat:@"MMM d, h:mm a"];
+
+                            GMSMarker *marker = [[GMSMarker alloc] init];
+                            marker.title = object[@"username"];
+                            marker.snippet = [NSString stringWithFormat:@"Last Updated: %@", [dateFormat stringFromDate:updatedAt]];
+                            marker.position = markerPosition;
+                            marker.map = mapView_;
+                            marker.icon = [UIImage imageNamed:@"friend_marker.png"];
+
+                        }
+                    } else {
+                        // Log details of the failure
+                        NSLog(@"Error: %@ %@", error, [error userInfo]);
+                    }
+                }];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
 
 @end

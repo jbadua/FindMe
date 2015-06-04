@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 CS 117. All rights reserved.
 //
 
-// TODO: Subclass this and AddMarkerMapViewController from common super class
-
 #import "MapViewController.h"
 #import "AddMarkerViewController.h"
 #import "AddMarkerMapViewController.h"
@@ -18,7 +16,6 @@
 
 @interface MapViewController ()
 
-@property (nonatomic, strong) NSArray *friends;
 // Used to send tapped photoMarker's objectID to ViewPhotoMarkerViewController
 @property (nonatomic, copy) NSString *photoMarkerObjectId;
 
@@ -187,8 +184,8 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-    
 }
+
 #pragma mark - Navigation
 
 - (IBAction)addNewMarker:(UIStoryboardSegue*)sender {
@@ -315,13 +312,12 @@
 - (void)getFriendsLocations {
     PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friends"];
     [friendQuery whereKey:@"a" equalTo:[PFUser currentUser].objectId];
-    [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *friends, NSError *error) {
         if (!error) {
-            self.friends = objects;
             // The find succeeded.
             // NSLog(@"Successfully retrieved %lu friends.", (unsigned long)objects.count);
             
-            for(PFObject *friend in self.friends){
+            for (PFObject *friend in friends){
                 PFQuery *locationQuery = [PFUser query];
                 [locationQuery whereKey:@"objectId" equalTo:friend[@"b"]];
                 [locationQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
