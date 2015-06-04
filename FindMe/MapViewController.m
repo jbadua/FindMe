@@ -16,6 +16,7 @@
 
 @interface MapViewController ()
 
+@property (nonatomic, strong) GMSMarker *lastPhotoMarker;
 // Used to send tapped photoMarker's objectID to ViewPhotoMarkerViewController
 @property (nonatomic, copy) NSString *photoMarkerObjectId;
 @property (nonatomic, strong) NSMutableArray *friendMarkers;
@@ -239,6 +240,37 @@
     }];
 }
 
+- (IBAction)deletePhotoMarker:(UIStoryboardSegue *)sender {
+    // Remove marker from map
+    self.lastPhotoMarker.map = nil;
+
+    // Remove marker from Parse
+    PFQuery *query = [PFQuery queryWithClassName:@"PhotoMarker"];
+    [query whereKey:@"createdBy" equalTo:[PFUser currentUser].objectId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                CLLocationCoordinate2D markerPosition = self.lastPhotoMarker.position;
+
+                NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
+                NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
+
+                // TODO: change to query constraints
+                if (markerPosition.longitude == markerLongitude.doubleValue
+                    && markerPosition.latitude == markerLatitude.doubleValue){
+                    [object deleteInBackground];
+                }
+
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
@@ -268,6 +300,7 @@
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
     // Photos have a photo as it's title
     if ([marker.title isEqualToString:@"Photo"]) {
+        self.lastPhotoMarker = marker;
         // Photos have the photo objectId as the snippet
         self.photoMarkerObjectId = marker.snippet;
         [self performSegueWithIdentifier:@"showPhoto" sender:self];

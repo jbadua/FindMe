@@ -774,11 +774,20 @@
                             <constraint firstItem="j0E-8Z-0Jk" firstAttribute="top" secondItem="ANO-83-roE" secondAttribute="bottom" id="yFn-XT-Ed5"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="YHR-3V-iIR">
+                        <barButtonItem key="rightBarButtonItem" title="Delete Marker" id="qjz-Zq-11F">
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="ETf-Ah-EXc" kind="unwind" unwindAction="deletePhotoMarker:" id="pbu-De-dlT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="ANO-83-roE" id="zeA-hd-mDK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dLy-6i-I2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ETf-Ah-EXc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-961" y="-2616"/>
         </scene>
@@ -1024,8 +1033,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="Mfs-Vl-Ejx"/>
         <segue reference="CNu-sJ-dKo"/>
+        <segue reference="m1b-Q2-IkA"/>
         <segue reference="ntT-D6-8Tq"/>
-        <segue reference="l7d-pm-teb"/>
         <segue reference="gaX-J4-pbe"/>
     </inferredMetricsTieBreakers>
 </document>
