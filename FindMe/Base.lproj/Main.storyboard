@@ -905,7 +905,7 @@
                     <tabBarItem key="tabBarItem" title="Photo Marker" image="cameraIconTabController" id="YN3-bh-XHB"/>
                     <connections>
                         <outlet property="imageView" destination="lAH-cH-n6w" id="bGZ-5u-gPJ"/>
-                        <segue destination="aoc-HW-2dq" kind="unwind" identifier="unwindToMapViewController" unwindAction="addNewPhotoMarker:" id="SVX-Km-3Ja"/>
+                        <segue destination="aoc-HW-2dq" kind="unwind" identifier="unwindToGroupMapViewController" unwindAction="addNewPhotoMarker:" id="SVX-Km-3Ja"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cre-pp-a6o" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -930,6 +930,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKZ-zS-anz">
+                                <rect key="frame" x="0.0" y="246" width="600" height="305"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="305" id="Y8F-Al-2Rk"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="2kh-OW-loV" kind="embed" identifier="embedGroupMarkerMap" id="gvu-8b-GEW"/>
+                                </connections>
+                            </containerView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="96E-xE-nuL">
                                 <rect key="frame" x="16" y="110" width="568" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -944,15 +953,6 @@
                                     </mask>
                                 </variation>
                             </textView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKZ-zS-anz">
-                                <rect key="frame" x="0.0" y="246" width="600" height="305"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="305" id="Y8F-Al-2Rk"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="2kh-OW-loV" kind="embed" identifier="embedGroupMarkerMap" id="gvu-8b-GEW"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration">
@@ -983,7 +983,7 @@
                     <connections>
                         <outlet property="markerSnippet" destination="96E-xE-nuL" id="AMf-h6-fXn"/>
                         <outlet property="markerTitle" destination="NOk-Rw-upv" id="Yia-0A-GoA"/>
-                        <segue destination="9s5-nP-lpo" kind="unwind" identifier="unwindToMapViewController" unwindAction="addNewMarker:" id="iwS-Ec-iXN"/>
+                        <segue destination="9s5-nP-lpo" kind="unwind" identifier="unwindToGroupMapViewController" unwindAction="addNewMarker:" id="iwS-Ec-iXN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YA-HQ-K0r" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1039,7 +1039,7 @@
         <segue reference="zvG-wY-GiO"/>
         <segue reference="CNu-sJ-dKo"/>
         <segue reference="m1b-Q2-IkA"/>
-        <segue reference="qlL-oL-Uzj"/>
+        <segue reference="ntT-D6-8Tq"/>
         <segue reference="gaX-J4-pbe"/>
     </inferredMetricsTieBreakers>
 </document>

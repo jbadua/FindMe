@@ -11,6 +11,9 @@
 
 @interface MapViewController : UIViewController <GMSMapViewDelegate>
 
+@property (nonatomic, strong) NSNumber *markerLatitude;
+@property (nonatomic, strong) NSNumber *markerLongiitude;
+
 - (void)displayExistingMarkers:(NSString *)creator;
 - (void)deleteMarker:(GMSMarker *)marker byCreator:(NSString *)creator;
 

@@ -150,6 +150,7 @@
         CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
         mapView_.camera = [GMSCameraPosition cameraWithTarget:location.coordinate
                                                          zoom:15];
+        self.markerPosition = location.coordinate;
         
         // Places marker on current location
         marker_ = [[GMSMarker alloc] init];
@@ -174,6 +175,7 @@
 
 - (void)mapView:(GMSMapView *)mapView didEndDraggingMarker:(GMSMarker *)marker {
     self.markerPosition = marker.position;
+    NSLog(@"Latitude: %f, Longitude: %f", marker.position.latitude, marker.position.longitude);
 }
 
 @end

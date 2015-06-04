@@ -22,6 +22,8 @@
 @property (nonatomic, copy) NSString *photoMarkerObjectId;
 @property (nonatomic, strong) NSMutableArray *friends;
 @property (nonatomic, strong) NSMutableArray *friendMarkers;
+@property (nonatomic, strong) NSMutableArray *textMarkers;
+@property (nonatomic, strong) NSMutableArray *photoMarkers;
 
 @end
 
@@ -100,6 +102,11 @@
     PFQuery *textMarkerQuery = [PFQuery queryWithClassName:@"TextMarker"];
     [textMarkerQuery whereKey:@"createdBy" equalTo:creator];
     [textMarkerQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSMutableArray *textMarkersTemp = [[NSMutableArray alloc] init];
+        for (PFObject *object in objects) {
+            [textMarkersTemp addObject:object];
+        }
+        self.textMarkers = textMarkersTemp;
         if (!error) {
             // The find succeeded.
             // Do something with the found objects
@@ -126,6 +133,11 @@
     PFQuery *photoMarkerQuery = [PFQuery queryWithClassName:@"PhotoMarker"];
     [photoMarkerQuery whereKey:@"createdBy" equalTo:creator];
     [photoMarkerQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSMutableArray *photoMarkersTemp = [[NSMutableArray alloc] init];
+        for (PFObject *object in objects) {
+            [photoMarkersTemp addObject:object];
+        }
+        self.photoMarkers = photoMarkersTemp;
         if (!error) {
             // The find succeeded.
             // Do something with the found objects
@@ -194,34 +206,36 @@
 
 - (IBAction)addNewMarker:(UIStoryboardSegue *)sender {
     AddMarkerViewController *sourceViewController = sender.sourceViewController;
-    NSArray *childViewControllers = sourceViewController.childViewControllers;
-    AddMarkerMapViewController *childViewController = childViewControllers[0];
 
+    CLLocationCoordinate2D markerPosition;
+    markerPosition.latitude = self.markerLatitude.doubleValue;
+    markerPosition.longitude = self.markerLongitude.doubleValue;
 
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.title = sourceViewController.markerTitle.text;
     marker.snippet = sourceViewController.markerSnippet.text;
-    marker.position = childViewController.markerPosition;
+    marker.position = markerPosition;
     marker.map = mapView_;
 
     // Disable saving to parse while testing
     PFObject *textMarker = [PFObject objectWithClassName:@"TextMarker"];
     textMarker[@"title"] = marker.title;
     textMarker[@"snippet"] = marker.snippet;
-    textMarker[@"latitude"] = [NSNumber numberWithDouble:marker.position.latitude];
-    textMarker[@"longitude"] = [NSNumber numberWithDouble:marker.position.longitude];
+    textMarker[@"latitude"] = self.markerLatitude;
+    textMarker[@"longitude"] = self.markerLongitude;
     textMarker[@"createdBy"] = self.groupObjectId;
     [textMarker saveInBackground];
+    [self.textMarkers addObject:textMarker];
 }
 
 - (IBAction)addNewPhotoMarker:(UIStoryboardSegue *)sender {
     AddPhotoMarkerViewController *sourceViewController = sender.sourceViewController;
-    NSArray *childViewControllers = sourceViewController.childViewControllers;
-    AddMarkerMapViewController *childViewController = childViewControllers[0];
 
     NSData *imageData = UIImagePNGRepresentation(sourceViewController.selectedImage);
     PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-    CLLocationCoordinate2D markerPosition = childViewController.markerPosition;
+    CLLocationCoordinate2D markerPosition;
+    markerPosition.latitude = self.markerLatitude.doubleValue;
+    markerPosition.longitude = self.markerLongitude.doubleValue;
 
     PFObject *photoMarker = [PFObject objectWithClassName:@"PhotoMarker"];
     photoMarker[@"title"] = @"Photo";
@@ -236,14 +250,16 @@
         marker.snippet = photoMarker.objectId;
         marker.icon = [self imageWithImage:sourceViewController.selectedImage
                               scaledToSize:scaledImageSize_];
-        marker.position = childViewController.markerPosition;
+        marker.position = markerPosition;
         marker.map = mapView_;
+        [self.photoMarkers addObject:photoMarker];
     }];
 }
 
 - (IBAction)deletePhotoMarker:(UIStoryboardSegue *)sender {
     // Remove marker from map
     self.lastPhotoMarker.map = nil;
+    [self.photoMarkers removeObject:self.lastPhotoMarker];
 
     // Remove marker from Parse
     PFQuery *query = [PFQuery queryWithClassName:@"PhotoMarker"];

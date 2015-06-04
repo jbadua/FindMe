@@ -8,6 +8,8 @@
 
 #import "AddMarkerViewController.h"
 #import "AddGroupMarkerMapViewController.h"
+#import "GroupMapViewController.h"
+#import "MapViewController.h"
 
 @interface AddMarkerViewController ()
 
@@ -55,8 +57,11 @@
 
 - (IBAction)addNewMarker:(id)sender {
     // Group and Explore segues have same name
-    // TODO: Make segue names unique
-    [self performSegueWithIdentifier:@"unwindToMapViewController" sender:self];
+    if (self.groupObjectId) {
+        [self performSegueWithIdentifier:@"unwindToGroupMapViewController" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"unwindToMapViewController" sender:self];
+    }
 }
 
 #pragma mark - UITextFieldDelegate Methods
@@ -120,6 +125,16 @@
         AddGroupMarkerMapViewController *child = segue.destinationViewController;
         NSLog(@"AddMarkerView: %@", self.groupObjectId);
         child.groupObjectId = self.groupObjectId;
+    } else if ([segue.identifier isEqualToString:@"unwindToGroupMapViewController"]) {
+        AddGroupMarkerMapViewController *child = self.childViewControllers[0];
+        GroupMapViewController *destination = segue.destinationViewController;
+        destination.markerLatitude = [NSNumber numberWithDouble:child.markerPosition.latitude];
+        destination.markerLatitude = [NSNumber numberWithDouble:child.markerPosition.longitude];
+    } else if ([segue.identifier isEqualToString:@"unwindToGroupMapViewController"]) {
+        AddGroupMarkerMapViewController *child = self.childViewControllers[0];
+        MapViewController *destination = segue.destinationViewController;
+        destination.markerLatitude = [NSNumber numberWithDouble:child.markerPosition.latitude];
+        destination.markerLatitude = [NSNumber numberWithDouble:child.markerPosition.longitude];
     }
 }
 

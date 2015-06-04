@@ -13,5 +13,7 @@
 @interface GroupMapViewController : UIViewController <GMSMapViewDelegate>
 
 @property (nonatomic, copy) NSString *groupObjectId;
+@property (nonatomic, strong) NSNumber *markerLatitude;
+@property (nonatomic, strong) NSNumber *markerLongitude;
 
 @end

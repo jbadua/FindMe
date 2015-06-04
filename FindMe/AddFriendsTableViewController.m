@@ -33,22 +33,30 @@
     [self.tableView setEditing:YES animated:YES];
 
     // Query for users
-    PFQuery *query = [PFUser query];
-    [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded
-            NSMutableArray *usersTemp = [[NSMutableArray alloc] initWithCapacity:objects.count];
-            // TODO: Not include current friends
-            for (PFObject *object in objects) {
-                [usersTemp addObject:object];
-            }
-            self.users = usersTemp;
-            [self.tableView reloadData]; // data may be loaded after the view
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+    PFQuery *friendPairQuery = [PFQuery queryWithClassName:@"Friends"];
+    [friendPairQuery whereKey:@"a" equalTo:[PFUser currentUser].objectId];
+    [friendPairQuery findObjectsInBackgroundWithBlock:^(NSArray *friendPairs, NSError *error) {
+        NSMutableArray *excludedUsers = [[NSMutableArray alloc] init];
+        [excludedUsers addObject:[PFUser currentUser].objectId];
+        for (PFObject *friendPair in friendPairs) {
+            [excludedUsers addObject:friendPair[@"b"]];
         }
+        PFQuery *query = [PFUser query];
+        [query whereKey:@"objectId" notContainedIn:excludedUsers];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                // The find succeeded
+                NSMutableArray *usersTemp = [[NSMutableArray alloc] initWithCapacity:objects.count];
+                for (PFObject *object in objects) {
+                    [usersTemp addObject:object];
+                }
+                self.users = usersTemp;
+                [self.tableView reloadData]; // data may be loaded after the view
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
     }];
 }
 

@@ -8,6 +8,8 @@
 
 #import "AddPhotoMarkerViewController.h"
 #import "AddGroupMarkerMapViewController.h"
+#import "GroupMapViewController.h"
+#import "MapViewController.h"
 
 @implementation AddPhotoMarkerViewController
 
@@ -25,7 +27,11 @@
 }
 
 - (IBAction)addNewPhotoMarker:(id)sender {
-    [self performSegueWithIdentifier:@"unwindToMapViewController" sender:self];
+    if (self.groupObjectId) {
+        [self performSegueWithIdentifier:@"unwindToGroupMapViewController" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"unwindToMapViewController" sender:self];
+    }
 }
 
 - (IBAction)showActionSheet:(id)sender {
@@ -107,6 +113,16 @@
         AddGroupMarkerMapViewController *child = segue.destinationViewController;
         NSLog(@"AddPhotoMarkerView: %@", self.groupObjectId);
         child.groupObjectId = self.groupObjectId;
+    } else if ([segue.identifier isEqualToString:@"unwindToGroupMapViewController"]) {
+        AddGroupMarkerMapViewController *child = self.childViewControllers[0];
+        GroupMapViewController *destination = segue.destinationViewController;
+        destination.markerLatitude = [NSNumber numberWithDouble:child.markerPosition.latitude];
+        destination.markerLatitude = [NSNumber numberWithDouble:child.markerPosition.longitude];
+    } else if ([segue.identifier isEqualToString:@"unwindToGroupMapViewController"]) {
+        AddGroupMarkerMapViewController *child = self.childViewControllers[0];
+        MapViewController *destination = segue.destinationViewController;
+        destination.markerLatitude = [NSNumber numberWithDouble:child.markerPosition.latitude];
+        destination.markerLatitude = [NSNumber numberWithDouble:child.markerPosition.longitude];
     }
 }
 
