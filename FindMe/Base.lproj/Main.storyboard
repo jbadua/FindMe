@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5il-Gz-5fq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5il-Gz-5fq">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -111,7 +111,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FindMe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmR-Q3-IxE">
-                                <rect key="frame" x="238" y="169" width="124.5" height="43"/>
+                                <rect key="frame" x="238" y="169" width="125" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -436,7 +436,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgs-TI-0db">
-                                <rect key="frame" x="16" y="135" width="59.5" height="17"/>
+                                <rect key="frame" x="16" y="135" width="60" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -599,7 +599,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Photo Marker" id="6sz-7D-aqs"/>
+                    <tabBarItem key="tabBarItem" title="Photo Marker" image="cameraIconTabController" id="6sz-7D-aqs"/>
                     <connections>
                         <outlet property="imageView" destination="XnT-K1-NWG" id="spB-Il-Oj4"/>
                         <segue destination="89g-TS-CLR" kind="unwind" identifier="unwindToMapViewController" unwindAction="addNewPhotoMarker:" id="akI-w4-Qgl"/>
@@ -677,7 +677,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Text Marker" id="EZD-Vq-3cD"/>
+                    <tabBarItem key="tabBarItem" title="Text Marker" image="textIconTabController" id="EZD-Vq-3cD"/>
                     <connections>
                         <outlet property="markerSnippet" destination="Gah-v9-g8e" id="ixt-pm-qBC"/>
                         <outlet property="markerTitle" destination="xBd-DC-iPF" id="msH-HT-kb6"/>
@@ -776,6 +776,10 @@
             <point key="canvasLocation" x="633" y="-2054.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cameraIconTabController" width="50" height="50"/>
+        <image name="textIconTabController" width="50" height="50"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="CNu-sJ-dKo"/>
         <segue reference="zvG-wY-GiO"/>
