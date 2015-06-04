@@ -101,8 +101,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="giR-lG-fNd">
-                                <rect key="frame" x="254" y="285" width="93" height="30"/>
+                            <button opaque="NO" contentMode="center" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="giR-lG-fNd">
+                                <rect key="frame" x="254" y="349" width="93" height="30"/>
                                 <state key="normal" title="Create Group">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -110,14 +110,14 @@
                                     <segue destination="dRQ-Wj-uc8" kind="show" id="P6U-fg-L57"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FindMe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmR-Q3-IxE">
-                                <rect key="frame" x="238" y="169" width="125" height="43"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="FindMe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmR-Q3-IxE">
+                                <rect key="frame" x="238" y="233" width="125" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyC-2d-qtf">
-                                <rect key="frame" x="258" y="361" width="84" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyC-2d-qtf">
+                                <rect key="frame" x="258" y="425" width="84" height="30"/>
                                 <state key="normal" title="Add Friends">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -125,8 +125,8 @@
                                     <segue destination="m6J-YO-wr6" kind="show" id="ffq-Qw-yhJ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="np6-uk-0hc">
-                                <rect key="frame" x="257" y="323" width="87" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="np6-uk-0hc">
+                                <rect key="frame" x="257" y="387" width="87" height="30"/>
                                 <state key="normal" title="View Groups">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -134,8 +134,8 @@
                                     <segue destination="qBf-bo-hqx" kind="show" id="zvG-wY-GiO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYZ-vv-VvQ">
-                                <rect key="frame" x="274" y="399" width="52" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYZ-vv-VvQ">
+                                <rect key="frame" x="274" y="463" width="52" height="30"/>
                                 <state key="normal" title="Explore">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -143,6 +143,9 @@
                                     <segue destination="vXZ-lx-hvc" kind="show" id="8Wv-rj-lMs"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="mQf-6o-oTp">
+                                <rect key="frame" x="258" y="131" width="89" height="73"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -157,9 +160,12 @@
                             <constraint firstItem="iYZ-vv-VvQ" firstAttribute="top" secondItem="iyC-2d-qtf" secondAttribute="bottom" constant="8" id="S88-Wu-FkT"/>
                             <constraint firstAttribute="centerX" secondItem="iYZ-vv-VvQ" secondAttribute="centerX" id="awn-nV-L8N"/>
                             <constraint firstItem="iyC-2d-qtf" firstAttribute="top" secondItem="np6-uk-0hc" secondAttribute="bottom" constant="8" id="cDN-ab-gnQ"/>
+                            <constraint firstAttribute="centerX" secondItem="mQf-6o-oTp" secondAttribute="centerX" constant="-2.5" id="j0B-Qm-Ucy"/>
                             <constraint firstAttribute="centerX" secondItem="np6-uk-0hc" secondAttribute="centerX" id="ls7-O3-VZa"/>
                             <constraint firstAttribute="centerX" secondItem="vmR-Q3-IxE" secondAttribute="centerX" id="luR-tT-t7p"/>
+                            <constraint firstItem="vmR-Q3-IxE" firstAttribute="top" secondItem="mQf-6o-oTp" secondAttribute="bottom" constant="29" id="n0f-a5-Kf7"/>
                             <constraint firstAttribute="centerX" secondItem="giR-lG-fNd" secondAttribute="centerX" id="nCB-ti-6Jc"/>
+                            <constraint firstAttribute="centerX" secondItem="mQf-6o-oTp" secondAttribute="centerX" id="wkB-1q-oRZ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -778,6 +784,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Image" width="72" height="72"/>
         <image name="cameraIconTabController" width="50" height="50"/>
         <image name="textIconTabController" width="50" height="50"/>
     </resources>
