@@ -126,7 +126,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FindMe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmR-Q3-IxE">
-                                <rect key="frame" x="238" y="169" width="125" height="43"/>
+                                <rect key="frame" x="238" y="169" width="124.5" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -141,7 +141,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="np6-uk-0hc">
-                                <rect key="frame" x="257" y="437" width="87" height="30"/>
+                                <rect key="frame" x="256.5" y="437" width="87" height="30"/>
                                 <state key="normal" title="View Groups">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -433,7 +433,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgs-TI-0db">
-                                <rect key="frame" x="16" y="135" width="60" height="17"/>
+                                <rect key="frame" x="16" y="135" width="59.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -541,6 +541,9 @@
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDD-RO-Xxt">
                                 <rect key="frame" x="0.0" y="246" width="600" height="305"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="305" id="CAC-Pk-hyx"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="Fof-ti-Bcc" kind="embed" id="qlL-oL-Uzj"/>
                                 </connections>
@@ -621,6 +624,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Dq-AU-e68">
+                                <rect key="frame" x="0.0" y="246" width="600" height="305"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="305" id="Klr-bx-Nc3"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="Fof-ti-Bcc" kind="embed" id="ntT-D6-8Tq"/>
+                                </connections>
+                            </containerView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="Gah-v9-g8e">
                                 <rect key="frame" x="16" y="110" width="568" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -632,13 +644,12 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5lS-fA-hiB"/>
+                                    </mask>
+                                </variation>
                             </textView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Dq-AU-e68">
-                                <rect key="frame" x="0.0" y="246" width="600" height="305"/>
-                                <connections>
-                                    <segue destination="Fof-ti-Bcc" kind="embed" id="ntT-D6-8Tq"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration">
@@ -647,6 +658,7 @@
                         <constraints>
                             <constraint firstItem="0Dq-AU-e68" firstAttribute="top" secondItem="Gah-v9-g8e" secondAttribute="bottom" constant="8" id="3M1-zu-HFz"/>
                             <constraint firstItem="xBd-DC-iPF" firstAttribute="leading" secondItem="jqp-Vd-syC" secondAttribute="leadingMargin" id="dGy-x7-QdR"/>
+                            <constraint firstItem="xBd-DC-iPF" firstAttribute="top" secondItem="rkW-LJ-53R" secondAttribute="bottom" constant="8" id="fJR-dx-bWR"/>
                             <constraint firstAttribute="centerY" secondItem="xBd-DC-iPF" secondAttribute="centerY" constant="213" id="hFI-iq-RdL"/>
                             <constraint firstItem="6lW-pV-0aq" firstAttribute="top" secondItem="0Dq-AU-e68" secondAttribute="bottom" id="lHh-ff-Wnq"/>
                             <constraint firstItem="Gah-v9-g8e" firstAttribute="trailing" secondItem="jqp-Vd-syC" secondAttribute="trailingMargin" id="nyv-OJ-9h3"/>
@@ -656,6 +668,11 @@
                             <constraint firstItem="Gah-v9-g8e" firstAttribute="top" secondItem="xBd-DC-iPF" secondAttribute="bottom" constant="8" id="w3v-II-mFE"/>
                             <constraint firstItem="Gah-v9-g8e" firstAttribute="leading" secondItem="jqp-Vd-syC" secondAttribute="leadingMargin" id="whu-RU-tEZ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="hFI-iq-RdL"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Text Marker" id="EZD-Vq-3cD"/>
                     <connections>
