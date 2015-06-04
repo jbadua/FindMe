@@ -40,6 +40,7 @@
     self.markerSnippet.text = @"Description";
     self.markerSnippet.delegate = self;
     self.markerTitle.delegate = self;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -59,11 +60,16 @@
 }
 
 #pragma mark - UITextFieldDelegate Methods
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    [textField setReturnKeyType:UIReturnKeyNext];
+    return YES;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
+    [self.markerSnippet becomeFirstResponder];
     return NO;
 }
+
 
 #pragma mark - UITextViewDelegate Methods
 
@@ -72,17 +78,28 @@
 // Limits text length
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
+    if ([text isEqualToString:@"\n"])
+    {
+        [self textViewDidChange:textView];
+        [textView resignFirstResponder];
+    }
     return textView.text.length + (text.length - range.length) <= markerSnippetLength;
 }
 
 // Removes placeholder text when user begins writing
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+    [textView setReturnKeyType:UIReturnKeyDone];
     if (self.markerSnippet.textColor == placeholderTextColor_) {
         self.markerSnippet.textColor = [UIColor blackColor];
         self.markerSnippet.text = @"";
     }
     return YES;
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    [textField becomeFirstResponder];
+}
+
 
 // Adds placeholder text if markerSnipper is empty
 - (void)textViewDidChange:(UITextView *)textView {
