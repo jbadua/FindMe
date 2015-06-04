@@ -152,7 +152,6 @@
                             <constraint firstItem="iyC-2d-qtf" firstAttribute="top" secondItem="iYZ-vv-VvQ" secondAttribute="bottom" constant="8" id="5Qz-9k-Zvd"/>
                             <constraint firstItem="np6-uk-0hc" firstAttribute="top" secondItem="iyC-2d-qtf" secondAttribute="bottom" constant="8" id="72G-Zo-SKZ"/>
                             <constraint firstItem="giR-lG-fNd" firstAttribute="top" secondItem="vmR-Q3-IxE" secondAttribute="bottom" constant="73" id="But-24-a1u"/>
-                            <constraint firstAttribute="centerY" secondItem="iYZ-vv-VvQ" secondAttribute="centerY" constant="-114" id="JYG-ns-mjc"/>
                             <constraint firstAttribute="centerY" secondItem="giR-lG-fNd" secondAttribute="centerY" id="K02-Y1-S4W"/>
                             <constraint firstItem="np6-uk-0hc" firstAttribute="top" secondItem="giR-lG-fNd" secondAttribute="bottom" constant="8" id="OtY-Ui-uUd"/>
                             <constraint firstItem="iYZ-vv-VvQ" firstAttribute="top" secondItem="iyC-2d-qtf" secondAttribute="bottom" constant="8" id="S88-Wu-FkT"/>
@@ -461,7 +460,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="DYF-gx-TQW" secondAttribute="centerY" constant="216" id="Cz4-fA-mBl"/>
+                            <constraint firstItem="DYF-gx-TQW" firstAttribute="top" secondItem="LaK-8a-hZ3" secondAttribute="bottom" constant="5" id="5ML-Db-Yfh"/>
                             <constraint firstItem="DYF-gx-TQW" firstAttribute="leading" secondItem="WJa-L6-a3a" secondAttribute="leadingMargin" id="ELl-np-mh0"/>
                             <constraint firstItem="rcb-b3-84L" firstAttribute="top" secondItem="Bgs-TI-0db" secondAttribute="bottom" constant="8" id="FoJ-Di-odh"/>
                             <constraint firstItem="Bgs-TI-0db" firstAttribute="leading" secondItem="WJa-L6-a3a" secondAttribute="leadingMargin" id="HUz-iA-Ppl"/>
@@ -781,6 +780,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="CNu-sJ-dKo"/>
         <segue reference="zvG-wY-GiO"/>
-        <segue reference="qlL-oL-Uzj"/>
+        <segue reference="ntT-D6-8Tq"/>
     </inferredMetricsTieBreakers>
 </document>

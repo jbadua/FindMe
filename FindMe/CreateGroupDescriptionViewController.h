@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateGroupDescriptionViewController : UIViewController
+@interface CreateGroupDescriptionViewController : UIViewController <UITextFieldDelegate>
 
 @end

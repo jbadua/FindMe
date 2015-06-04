@@ -18,6 +18,8 @@
 
 // Used to send tapped photoMarker's objectID to ViewPhotoMarkerViewController
 @property (nonatomic, copy) NSString *photoMarkerObjectId;
+@property (nonatomic, strong) NSArray *friends;
+@property (nonatomic, strong) NSMutableArray *friendMarkers;
 
 @end
 
@@ -31,6 +33,7 @@
     [super viewDidLoad];
 
     scaledImageSize_ = CGSizeMake(25, 25);
+    self.friendMarkers = [[NSMutableArray alloc] init];
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868
                                                             longitude:151.2086
                                                                  zoom:12];
@@ -310,10 +313,21 @@
 #pragma mark - FriendMarker Methods
 
 - (void)getFriendsLocations {
+    // If query for friends already done, just fetch latest data
+    if (self.friends) {
+        NSLog(@"friendMarkers count: %d", self.friendMarkers.count);
+        for (GMSMarker *marker in self.friendMarkers) {
+            marker.map = nil;
+        }
+        NSLog(@"friendMarkers count: %d", self.friendMarkers.count);
+        [self.friendMarkers removeAllObjects];
+    }
+
     PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friends"];
     [friendQuery whereKey:@"a" equalTo:[PFUser currentUser].objectId];
     [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *friends, NSError *error) {
         if (!error) {
+            self.friends = friends;
             // The find succeeded.
             // NSLog(@"Successfully retrieved %lu friends.", (unsigned long)objects.count);
             
@@ -322,6 +336,7 @@
                 [locationQuery whereKey:@"objectId" equalTo:friend[@"b"]];
                 [locationQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                     if (!error) {
+
                         // The find succeeded.
                         // NSLog(@"Successfully retrieved %lu friends test.", (unsigned long)objects.count);
                         // Do something with the found objects
@@ -342,7 +357,7 @@
                             marker.position = markerPosition;
                             marker.map = mapView_;
                             marker.icon = [UIImage imageNamed:@"friend_marker.png"];
-                            
+                            [self.friendMarkers addObject:marker];
                         }
                     } else {
                         // Log details of the failure
