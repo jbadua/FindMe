@@ -1,23 +1,22 @@
 //
-//  AddMarkerMapViewController.m
+//  AddGroupMarkerMapViewController.m
 //  FindMe
 //
-//  Created by Jason Badua on 5/14/15.
+//  Created by Jason Badua on 6/4/15.
 //  Copyright (c) 2015 CS 117. All rights reserved.
 //
 
-// TODO: Subclass this and MapViewController from common super class
+#import "AddGroupMarkerMapViewController.h"
 
-#import "AddMarkerMapViewController.h"
-
+#import "GroupMapViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <Parse/Parse.h>
 
-@interface AddMarkerMapViewController ()
+@interface AddGroupMarkerMapViewController ()
 
 @end
 
-@implementation AddMarkerMapViewController {
+@implementation AddGroupMarkerMapViewController {
     BOOL firstLocationUpdate_;
     CGSize scaledImageSize_;
     GMSMapView *mapView_;
@@ -27,31 +26,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    NSLog(@"Group Object Id: %@", self.groupObjectId);
     scaledImageSize_ = CGSizeMake(25, 25);
-    
+
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868
                                                             longitude:151.2086
                                                                  zoom:15];
-    
+
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView_.settings.compassButton = YES;
     mapView_.settings.myLocationButton = YES;
     [mapView_ setMinZoom:15 maxZoom:20];
-    
+
     // Listen to the myLocation property of GMSMapView.
     [mapView_ addObserver:self
                forKeyPath:@"myLocation"
                   options:NSKeyValueObservingOptionNew
                   context:NULL];
-    
+
     self.view = mapView_;
     mapView_.delegate = self;
-    
+
     // Ask for My Location data after the map has already been added to the UI.
     dispatch_async(dispatch_get_main_queue(), ^{
         mapView_.myLocationEnabled = YES;
     });
-    [self displayExistingMarkers:[PFUser currentUser].objectId];
+    [self displayExistingMarkers:self.groupObjectId];
 }
 
 - (void)dealloc {
@@ -150,7 +150,7 @@
         CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
         mapView_.camera = [GMSCameraPosition cameraWithTarget:location.coordinate
                                                          zoom:15];
-        
+
         // Places marker on current location
         marker_ = [[GMSMarker alloc] init];
         marker_.position = mapView_.myLocation.coordinate;

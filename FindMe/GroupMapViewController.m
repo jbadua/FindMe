@@ -7,6 +7,7 @@
 //
 
 #import "GroupMapViewController.h"
+#import "AddGroupMarkerMapViewController.h"
 #import "AddMarkerViewController.h"
 #import "AddMarkerMapViewController.h"
 #import "AddPhotoMarkerViewController.h"
@@ -246,6 +247,12 @@
         ViewPhotoMarkerViewController *destination =
         (ViewPhotoMarkerViewController *)segue.destinationViewController;
         destination.photoMarkerObjectId = self.photoMarkerObjectId;
+    } else if ([segue.identifier isEqualToString:@"addGroupMarker"]) {
+        UITabBarController *destination = segue.destinationViewController;
+        AddMarkerViewController *child = destination.childViewControllers[0];
+        child.groupObjectId = self.groupObjectId;
+        AddPhotoMarkerViewController *otherChild = destination.childViewControllers[1];
+        otherChild.groupObjectId = self.groupObjectId;
     }
 }
 

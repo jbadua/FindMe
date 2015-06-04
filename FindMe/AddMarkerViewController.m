@@ -7,7 +7,7 @@
 //
 
 #import "AddMarkerViewController.h"
-#import "AddMarkerMapViewController.h"
+#import "AddGroupMarkerMapViewController.h"
 
 @interface AddMarkerViewController ()
 
@@ -53,6 +53,8 @@
 }
 
 - (IBAction)addNewMarker:(id)sender {
+    // Group and Explore segues have same name
+    // TODO: Make segue names unique
     [self performSegueWithIdentifier:@"unwindToMapViewController" sender:self];
 }
 
@@ -91,14 +93,17 @@
     }
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"embedGroupMarkerMap"]) {
+        AddGroupMarkerMapViewController *child = segue.destinationViewController;
+        NSLog(@"AddMarkerView: %@", self.groupObjectId);
+        child.groupObjectId = self.groupObjectId;
+    }
 }
-*/
 
 @end

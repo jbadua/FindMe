@@ -13,6 +13,7 @@
 
 @interface AddMarkerViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 
+@property (nonatomic, copy) NSString *groupObjectId;
 @property (weak, nonatomic) IBOutlet UITextField *markerTitle;
 @property (weak, nonatomic) IBOutlet UITextView *markerSnippet;
 

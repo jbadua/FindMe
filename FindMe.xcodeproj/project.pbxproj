@@ -15,6 +15,7 @@
 		9624925C1B0C26B900D30CDD /* InvitesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9624925B1B0C26B900D30CDD /* InvitesTableViewController.m */; };
 		962B585D1B0AD06400ADBD3A /* AddFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B585C1B0AD06400ADBD3A /* AddFriendsTableViewController.m */; };
 		96406CC21B1F70EB00CBB27C /* ViewPhotoMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96406CC11B1F70EB00CBB27C /* ViewPhotoMarkerViewController.m */; };
+		96406CC51B20AE3A00CBB27C /* AddGroupMarkerMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96406CC41B20AE3900CBB27C /* AddGroupMarkerMapViewController.m */; };
 		9653CDBE1AFD51F10068F600 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9653CDBC1AFD51F10068F600 /* Bolts.framework */; };
 		9653CDBF1AFD51F10068F600 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9653CDBD1AFD51F10068F600 /* Parse.framework */; };
 		9653CDC11AFD52440068F600 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9653CDC01AFD52440068F600 /* AudioToolbox.framework */; };
@@ -84,6 +85,8 @@
 		962B585C1B0AD06400ADBD3A /* AddFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsTableViewController.m; sourceTree = "<group>"; };
 		96406CC01B1F70EB00CBB27C /* ViewPhotoMarkerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPhotoMarkerViewController.h; sourceTree = "<group>"; };
 		96406CC11B1F70EB00CBB27C /* ViewPhotoMarkerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPhotoMarkerViewController.m; sourceTree = "<group>"; };
+		96406CC31B20AE3900CBB27C /* AddGroupMarkerMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddGroupMarkerMapViewController.h; sourceTree = "<group>"; };
+		96406CC41B20AE3900CBB27C /* AddGroupMarkerMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddGroupMarkerMapViewController.m; sourceTree = "<group>"; };
 		9653CDBC1AFD51F10068F600 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		9653CDBD1AFD51F10068F600 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		9653CDC01AFD52440068F600 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -210,6 +213,8 @@
 		968D179D1AE60FF000468A63 /* FindMe */ = {
 			isa = PBXGroup;
 			children = (
+				96406CC31B20AE3900CBB27C /* AddGroupMarkerMapViewController.h */,
+				96406CC41B20AE3900CBB27C /* AddGroupMarkerMapViewController.m */,
 				962B585B1B0AD06400ADBD3A /* AddFriendsTableViewController.h */,
 				962B585C1B0AD06400ADBD3A /* AddFriendsTableViewController.m */,
 				969296011B054E0E006E3B83 /* AddMarkerMapViewController.h */,
@@ -424,6 +429,7 @@
 				310BC6D31B0552C6009B0377 /* ContactsTableViewController.m in Sources */,
 				96F2E07C1B1CF8AB001FDE2E /* CreateGroupDescriptionViewController.m in Sources */,
 				968D17A41AE60FF000468A63 /* AppDelegate.m in Sources */,
+				96406CC51B20AE3A00CBB27C /* AddGroupMarkerMapViewController.m in Sources */,
 				96F2E07F1B1D9637001FDE2E /* EditGroupViewController.m in Sources */,
 				9624925C1B0C26B900D30CDD /* InvitesTableViewController.m in Sources */,
 				96F2E0761B170849001FDE2E /* CreateGroupTableViewController.m in Sources */,

@@ -79,8 +79,8 @@
             for (PFObject *object in objects) {
                 NSNumber* newLatitude = [NSNumber numberWithDouble:self.locationManager.location.coordinate.latitude];
                 NSNumber* newLongitude = [NSNumber numberWithDouble:self.locationManager.location.coordinate.longitude];
-                NSLog(@"New Longitude: %@", newLongitude);
-                NSLog(@"New Latitude: %@", newLatitude);
+//                NSLog(@"New Longitude: %@", newLongitude);
+//                NSLog(@"New Latitude: %@", newLatitude);
 
                 [object setObject:newLatitude forKey:@"latitude"];
                 [object setObject:newLongitude forKey:@"longitude"];

@@ -12,6 +12,7 @@
 @interface AddPhotoMarkerViewController : UIViewController
     <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
 
+@property (nonatomic, copy) NSString *groupObjectId;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) UIImage *selectedImage;
 
