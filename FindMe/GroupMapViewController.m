@@ -20,6 +20,7 @@
 @property (nonatomic, strong) GMSMarker *lastPhotoMarker;
 // Used to send tapped photoMarker's objectID to ViewPhotoMarkerViewController
 @property (nonatomic, copy) NSString *photoMarkerObjectId;
+@property (nonatomic, strong) NSMutableArray *friends;
 @property (nonatomic, strong) NSMutableArray *friendMarkers;
 
 @end
@@ -246,7 +247,7 @@
 
     // Remove marker from Parse
     PFQuery *query = [PFQuery queryWithClassName:@"PhotoMarker"];
-    [query whereKey:@"createdBy" equalTo:self.groupObjectId];
+    [query whereKey:@"objectId" equalTo:self.photoMarkerObjectId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
@@ -330,8 +331,7 @@
     UIAlertAction* defaultAction =
     [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive
                            handler:^(UIAlertAction * action) {
-                               NSString *userObjectId =[PFUser currentUser].objectId;
-                               [self deleteMarker:marker byCreator:userObjectId];
+                               [self deleteMarker:marker byCreator:self.groupObjectId];
                                marker.map = nil;
                            }];
 
@@ -356,6 +356,7 @@
         for (GMSMarker *marker in self.friendMarkers) {
             marker.map = nil;
         }
+        [self.friends removeAllObjects];
         [self.friendMarkers removeAllObjects];
     }
 
@@ -378,6 +379,7 @@
                         // NSLog(@"Successfully retrieved %lu friends test.", (unsigned long)objects.count);
                         // Do something with the found objects
                         for (PFObject *object in objects) {
+                            [self.friends addObject:object];
                             // Coordinates stored as NSNumbers in Parse
                             NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
                             NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];

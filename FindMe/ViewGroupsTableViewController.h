@@ -10,6 +10,6 @@
 
 @interface ViewGroupsTableViewController : UITableViewController
 
-@property (nonatomic, copy) NSArray *groups;
+@property (nonatomic, strong) NSMutableArray *groups;
 
 @end

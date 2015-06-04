@@ -149,6 +149,7 @@
      if ([segue.identifier isEqualToString:@"newGroupCreated"]) {
          [self createGroup];
          [self.navigationController popViewControllerAnimated:YES];
+         [self.navigationController popViewControllerAnimated:YES];
      }
  }
 
