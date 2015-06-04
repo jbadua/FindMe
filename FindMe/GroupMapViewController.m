@@ -17,6 +17,7 @@
 
 @interface GroupMapViewController ()
 
+@property (nonatomic, strong) GMSMarker *lastPhotoMarker;
 // Used to send tapped photoMarker's objectID to ViewPhotoMarkerViewController
 @property (nonatomic, copy) NSString *photoMarkerObjectId;
 @property (nonatomic, strong) NSMutableArray *friendMarkers;
@@ -190,7 +191,7 @@
 
 #pragma mark - Navigation
 
-- (IBAction)addNewMarker:(UIStoryboardSegue*)sender {
+- (IBAction)addNewMarker:(UIStoryboardSegue *)sender {
     AddMarkerViewController *sourceViewController = sender.sourceViewController;
     NSArray *childViewControllers = sourceViewController.childViewControllers;
     AddMarkerMapViewController *childViewController = childViewControllers[0];
@@ -212,7 +213,7 @@
     [textMarker saveInBackground];
 }
 
-- (IBAction)addNewPhotoMarker:(UIStoryboardSegue*)sender {
+- (IBAction)addNewPhotoMarker:(UIStoryboardSegue *)sender {
     AddPhotoMarkerViewController *sourceViewController = sender.sourceViewController;
     NSArray *childViewControllers = sourceViewController.childViewControllers;
     AddMarkerMapViewController *childViewController = childViewControllers[0];
@@ -236,6 +237,37 @@
                               scaledToSize:scaledImageSize_];
         marker.position = childViewController.markerPosition;
         marker.map = mapView_;
+    }];
+}
+
+- (IBAction)deletePhotoMarker:(UIStoryboardSegue *)sender {
+    // Remove marker from map
+    self.lastPhotoMarker.map = nil;
+
+    // Remove marker from Parse
+    PFQuery *query = [PFQuery queryWithClassName:@"PhotoMarker"];
+    [query whereKey:@"createdBy" equalTo:self.groupObjectId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                CLLocationCoordinate2D markerPosition = self.lastPhotoMarker.position;
+
+                NSNumber *markerLatitude = (NSNumber *)object[@"latitude"];
+                NSNumber *markerLongitude = (NSNumber *)object[@"longitude"];
+
+                // TODO: change to query constraints
+                if (markerPosition.longitude == markerLongitude.doubleValue
+                    && markerPosition.latitude == markerLatitude.doubleValue){
+                    [object deleteInBackground];
+                }
+
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
     }];
 }
 
@@ -274,6 +306,7 @@
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
     // Photos have a photo as it's title
     if ([marker.title isEqualToString:@"Photo"]) {
+        self.lastPhotoMarker = marker;
         // Photos have the photo objectId as the snippet
         self.photoMarkerObjectId = marker.snippet;
         [self performSegueWithIdentifier:@"showPhoto" sender:self];
