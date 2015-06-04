@@ -110,21 +110,6 @@
                                     <segue destination="dRQ-Wj-uc8" kind="show" id="P6U-fg-L57"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0e-nu-gib">
-                                <rect key="frame" x="278" y="323" width="45" height="30"/>
-                                <state key="normal" title="Invites">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYZ-vv-VvQ">
-                                <rect key="frame" x="274" y="361" width="52" height="30"/>
-                                <state key="normal" title="Explore">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="show" id="8Wv-rj-lMs"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FindMe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmR-Q3-IxE">
                                 <rect key="frame" x="238" y="169" width="124.5" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
@@ -132,7 +117,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyC-2d-qtf">
-                                <rect key="frame" x="258" y="399" width="84" height="30"/>
+                                <rect key="frame" x="258" y="361" width="84" height="30"/>
                                 <state key="normal" title="Add Friends">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -141,7 +126,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="np6-uk-0hc">
-                                <rect key="frame" x="256.5" y="437" width="87" height="30"/>
+                                <rect key="frame" x="257" y="323" width="87" height="30"/>
                                 <state key="normal" title="View Groups">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -149,22 +134,40 @@
                                     <segue destination="qBf-bo-hqx" kind="show" id="zvG-wY-GiO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYZ-vv-VvQ">
+                                <rect key="frame" x="274" y="399" width="52" height="30"/>
+                                <state key="normal" title="Explore">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="vXZ-lx-hvc" kind="show" id="8Wv-rj-lMs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="iyC-2d-qtf" secondAttribute="centerX" id="0ub-0V-WSA"/>
-                            <constraint firstItem="iYZ-vv-VvQ" firstAttribute="top" secondItem="T0e-nu-gib" secondAttribute="bottom" constant="8" id="2Xi-Jb-K5R"/>
+                            <constraint firstItem="V3R-5r-72J" firstAttribute="top" secondItem="iYZ-vv-VvQ" secondAttribute="bottom" constant="171" id="12B-Al-mAu"/>
+                            <constraint firstAttribute="centerX" secondItem="np6-uk-0hc" secondAttribute="centerX" id="1yx-Ht-dFn"/>
                             <constraint firstItem="iyC-2d-qtf" firstAttribute="top" secondItem="iYZ-vv-VvQ" secondAttribute="bottom" constant="8" id="5Qz-9k-Zvd"/>
                             <constraint firstItem="np6-uk-0hc" firstAttribute="top" secondItem="iyC-2d-qtf" secondAttribute="bottom" constant="8" id="72G-Zo-SKZ"/>
                             <constraint firstItem="giR-lG-fNd" firstAttribute="top" secondItem="vmR-Q3-IxE" secondAttribute="bottom" constant="73" id="But-24-a1u"/>
                             <constraint firstAttribute="centerY" secondItem="giR-lG-fNd" secondAttribute="centerY" id="K02-Y1-S4W"/>
+                            <constraint firstItem="np6-uk-0hc" firstAttribute="top" secondItem="giR-lG-fNd" secondAttribute="bottom" constant="8" id="OtY-Ui-uUd"/>
+                            <constraint firstItem="iYZ-vv-VvQ" firstAttribute="top" secondItem="iyC-2d-qtf" secondAttribute="bottom" constant="8" id="S88-Wu-FkT"/>
                             <constraint firstAttribute="centerX" secondItem="iYZ-vv-VvQ" secondAttribute="centerX" id="awn-nV-L8N"/>
-                            <constraint firstAttribute="centerX" secondItem="T0e-nu-gib" secondAttribute="centerX" id="eqm-Wu-Tcn"/>
+                            <constraint firstItem="iyC-2d-qtf" firstAttribute="top" secondItem="np6-uk-0hc" secondAttribute="bottom" constant="8" id="cDN-ab-gnQ"/>
                             <constraint firstAttribute="centerX" secondItem="np6-uk-0hc" secondAttribute="centerX" id="ls7-O3-VZa"/>
                             <constraint firstAttribute="centerX" secondItem="vmR-Q3-IxE" secondAttribute="centerX" id="luR-tT-t7p"/>
                             <constraint firstAttribute="centerX" secondItem="giR-lG-fNd" secondAttribute="centerX" id="nCB-ti-6Jc"/>
-                            <constraint firstItem="T0e-nu-gib" firstAttribute="top" secondItem="giR-lG-fNd" secondAttribute="bottom" constant="8" id="wok-eS-TeY"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="72G-Zo-SKZ"/>
+                                <exclude reference="ls7-O3-VZa"/>
+                                <exclude reference="5Qz-9k-Zvd"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Yvu-fP-q3m"/>
                 </viewController>
@@ -775,7 +778,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="CNu-sJ-dKo"/>
+        <segue reference="zvG-wY-GiO"/>
         <segue reference="qlL-oL-Uzj"/>
-        <segue reference="Mfs-Vl-Ejx"/>
     </inferredMetricsTieBreakers>
 </document>
