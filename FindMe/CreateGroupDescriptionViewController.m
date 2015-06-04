@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.groupName.delegate = self;
     self.groupEndDate.minimumDate =
         [[ NSDate alloc ] initWithTimeIntervalSinceNow: (NSTimeInterval) 0 ];
 }

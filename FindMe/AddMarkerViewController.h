@@ -11,7 +11,7 @@
 @import CoreLocation;
 
 
-@interface AddMarkerViewController : UIViewController <UITextViewDelegate>
+@interface AddMarkerViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *markerTitle;
 @property (weak, nonatomic) IBOutlet UITextView *markerSnippet;

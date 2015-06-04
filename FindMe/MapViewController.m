@@ -18,7 +18,6 @@
 
 // Used to send tapped photoMarker's objectID to ViewPhotoMarkerViewController
 @property (nonatomic, copy) NSString *photoMarkerObjectId;
-@property (nonatomic, strong) NSArray *friends;
 @property (nonatomic, strong) NSMutableArray *friendMarkers;
 
 @end
@@ -314,12 +313,10 @@
 
 - (void)getFriendsLocations {
     // If query for friends already done, just fetch latest data
-    if (self.friends) {
-        NSLog(@"friendMarkers count: %d", self.friendMarkers.count);
+    if (self.friendMarkers) {
         for (GMSMarker *marker in self.friendMarkers) {
             marker.map = nil;
         }
-        NSLog(@"friendMarkers count: %d", self.friendMarkers.count);
         [self.friendMarkers removeAllObjects];
     }
 
@@ -327,7 +324,6 @@
     [friendQuery whereKey:@"a" equalTo:[PFUser currentUser].objectId];
     [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *friends, NSError *error) {
         if (!error) {
-            self.friends = friends;
             // The find succeeded.
             // NSLog(@"Successfully retrieved %lu friends.", (unsigned long)objects.count);
             

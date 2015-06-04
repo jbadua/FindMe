@@ -39,6 +39,7 @@
     self.markerSnippet.textColor = placeholderTextColor_;
     self.markerSnippet.text = @"Description";
     self.markerSnippet.delegate = self;
+    self.markerTitle.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -53,6 +54,13 @@
 
 - (IBAction)addNewMarker:(id)sender {
     [self performSegueWithIdentifier:@"unwindToMapViewController" sender:self];
+}
+
+#pragma mark - UITextFieldDelegate Methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
 }
 
 #pragma mark - UITextViewDelegate Methods

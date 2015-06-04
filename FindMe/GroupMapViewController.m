@@ -18,6 +18,7 @@
 
 // Used to send tapped photoMarker's objectID to ViewPhotoMarkerViewController
 @property (nonatomic, copy) NSString *photoMarkerObjectId;
+@property (nonatomic, strong) NSMutableArray *friendMarkers;
 
 @end
 
@@ -29,6 +30,7 @@
 
 - (void)viewDidLoad {
     scaledImageSize_ = CGSizeMake(25, 25);
+    self.friendMarkers = [[NSMutableArray alloc] init];
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868
                                                             longitude:151.2086
                                                                  zoom:12];
@@ -309,6 +311,14 @@
 #pragma mark - FriendMarker Methods
 
 - (void)getGroupMemberLocations {
+    // If query for friends already done, just fetch latest data
+    if (self.friendMarkers) {
+        for (GMSMarker *marker in self.friendMarkers) {
+            marker.map = nil;
+        }
+        [self.friendMarkers removeAllObjects];
+    }
+
     PFQuery *groupQuery = [PFQuery queryWithClassName:@"Group"];
     [groupQuery whereKey:@"objectId" equalTo:self.groupObjectId];
     [groupQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -323,7 +333,6 @@
                 PFQuery *userQuery = [PFUser query];
                 [userQuery whereKey:@"objectId" equalTo:userObjectId];
                 [userQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                    ///////////////
                     if (!error) {
                         // The find succeeded.
                         // NSLog(@"Successfully retrieved %lu friends test.", (unsigned long)objects.count);
@@ -345,7 +354,7 @@
                             marker.position = markerPosition;
                             marker.map = mapView_;
                             marker.icon = [UIImage imageNamed:@"friend_marker.png"];
-
+                            [self.friendMarkers addObject:marker];
                         }
                     } else {
                         // Log details of the failure
