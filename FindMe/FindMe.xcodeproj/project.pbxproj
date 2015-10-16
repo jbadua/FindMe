@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		961AFB7B1BD094CD00FF6448 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 961AFB7A1BD094CD00FF6448 /* main.m */; };
+		961AFB7E1BD094CD00FF6448 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 961AFB7D1BD094CD00FF6448 /* AppDelegate.m */; };
+		961AFB811BD094CD00FF6448 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961AFB801BD094CD00FF6448 /* ViewController.m */; };
+		961AFB841BD094CD00FF6448 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 961AFB821BD094CD00FF6448 /* Main.storyboard */; };
+		961AFB861BD094CD00FF6448 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 961AFB851BD094CD00FF6448 /* Assets.xcassets */; };
+		961AFB891BD094CD00FF6448 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 961AFB871BD094CD00FF6448 /* LaunchScreen.storyboard */; };
+		961AFB941BD094CD00FF6448 /* FindMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 961AFB931BD094CD00FF6448 /* FindMeTests.m */; };
+		961AFB9F1BD094CD00FF6448 /* FindMeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 961AFB9E1BD094CD00FF6448 /* FindMeUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		961AFB901BD094CD00FF6448 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 961AFB6E1BD094CD00FF6448 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 961AFB751BD094CD00FF6448;
+			remoteInfo = FindMe;
+		};
+		961AFB9B1BD094CD00FF6448 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 961AFB6E1BD094CD00FF6448 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 961AFB751BD094CD00FF6448;
+			remoteInfo = FindMe;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		961AFB761BD094CD00FF6448 /* FindMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		961AFB7A1BD094CD00FF6448 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		961AFB7C1BD094CD00FF6448 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		961AFB7D1BD094CD00FF6448 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		961AFB7F1BD094CD00FF6448 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		961AFB801BD094CD00FF6448 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		961AFB831BD094CD00FF6448 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		961AFB851BD094CD00FF6448 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		961AFB881BD094CD00FF6448 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		961AFB8A1BD094CD00FF6448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		961AFB8F1BD094CD00FF6448 /* FindMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FindMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		961AFB931BD094CD00FF6448 /* FindMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindMeTests.m; sourceTree = "<group>"; };
+		961AFB951BD094CD00FF6448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		961AFB9A1BD094CD00FF6448 /* FindMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FindMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		961AFB9E1BD094CD00FF6448 /* FindMeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindMeUITests.m; sourceTree = "<group>"; };
+		961AFBA01BD094CD00FF6448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		961AFB731BD094CD00FF6448 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		961AFB8C1BD094CD00FF6448 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		961AFB971BD094CD00FF6448 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		961AFB6D1BD094CD00FF6448 = {
+			isa = PBXGroup;
+			children = (
+				961AFB781BD094CD00FF6448 /* FindMe */,
+				961AFB921BD094CD00FF6448 /* FindMeTests */,
+				961AFB9D1BD094CD00FF6448 /* FindMeUITests */,
+				961AFB771BD094CD00FF6448 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		961AFB771BD094CD00FF6448 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				961AFB761BD094CD00FF6448 /* FindMe.app */,
+				961AFB8F1BD094CD00FF6448 /* FindMeTests.xctest */,
+				961AFB9A1BD094CD00FF6448 /* FindMeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		961AFB781BD094CD00FF6448 /* FindMe */ = {
+			isa = PBXGroup;
+			children = (
+				961AFB7C1BD094CD00FF6448 /* AppDelegate.h */,
+				961AFB7D1BD094CD00FF6448 /* AppDelegate.m */,
+				961AFB7F1BD094CD00FF6448 /* ViewController.h */,
+				961AFB801BD094CD00FF6448 /* ViewController.m */,
+				961AFB821BD094CD00FF6448 /* Main.storyboard */,
+				961AFB851BD094CD00FF6448 /* Assets.xcassets */,
+				961AFB871BD094CD00FF6448 /* LaunchScreen.storyboard */,
+				961AFB8A1BD094CD00FF6448 /* Info.plist */,
+				961AFB791BD094CD00FF6448 /* Supporting Files */,
+			);
+			path = FindMe;
+			sourceTree = "<group>";
+		};
+		961AFB791BD094CD00FF6448 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				961AFB7A1BD094CD00FF6448 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		961AFB921BD094CD00FF6448 /* FindMeTests */ = {
+			isa = PBXGroup;
+			children = (
+				961AFB931BD094CD00FF6448 /* FindMeTests.m */,
+				961AFB951BD094CD00FF6448 /* Info.plist */,
+			);
+			path = FindMeTests;
+			sourceTree = "<group>";
+		};
+		961AFB9D1BD094CD00FF6448 /* FindMeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				961AFB9E1BD094CD00FF6448 /* FindMeUITests.m */,
+				961AFBA01BD094CD00FF6448 /* Info.plist */,
+			);
+			path = FindMeUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		961AFB751BD094CD00FF6448 /* FindMe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 961AFBA31BD094CD00FF6448 /* Build configuration list for PBXNativeTarget "FindMe" */;
+			buildPhases = (
+				961AFB721BD094CD00FF6448 /* Sources */,
+				961AFB731BD094CD00FF6448 /* Frameworks */,
+				961AFB741BD094CD00FF6448 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FindMe;
+			productName = FindMe;
+			productReference = 961AFB761BD094CD00FF6448 /* FindMe.app */;
+			productType = "com.apple.product-type.application";
+		};
+		961AFB8E1BD094CD00FF6448 /* FindMeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 961AFBA61BD094CD00FF6448 /* Build configuration list for PBXNativeTarget "FindMeTests" */;
+			buildPhases = (
+				961AFB8B1BD094CD00FF6448 /* Sources */,
+				961AFB8C1BD094CD00FF6448 /* Frameworks */,
+				961AFB8D1BD094CD00FF6448 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				961AFB911BD094CD00FF6448 /* PBXTargetDependency */,
+			);
+			name = FindMeTests;
+			productName = FindMeTests;
+			productReference = 961AFB8F1BD094CD00FF6448 /* FindMeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		961AFB991BD094CD00FF6448 /* FindMeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 961AFBA91BD094CD00FF6448 /* Build configuration list for PBXNativeTarget "FindMeUITests" */;
+			buildPhases = (
+				961AFB961BD094CD00FF6448 /* Sources */,
+				961AFB971BD094CD00FF6448 /* Frameworks */,
+				961AFB981BD094CD00FF6448 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				961AFB9C1BD094CD00FF6448 /* PBXTargetDependency */,
+			);
+			name = FindMeUITests;
+			productName = FindMeUITests;
+			productReference = 961AFB9A1BD094CD00FF6448 /* FindMeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		961AFB6E1BD094CD00FF6448 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Jason Badua";
+				TargetAttributes = {
+					961AFB751BD094CD00FF6448 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+					961AFB8E1BD094CD00FF6448 = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = 961AFB751BD094CD00FF6448;
+					};
+					961AFB991BD094CD00FF6448 = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = 961AFB751BD094CD00FF6448;
+					};
+				};
+			};
+			buildConfigurationList = 961AFB711BD094CD00FF6448 /* Build configuration list for PBXProject "FindMe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 961AFB6D1BD094CD00FF6448;
+			productRefGroup = 961AFB771BD094CD00FF6448 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				961AFB751BD094CD00FF6448 /* FindMe */,
+				961AFB8E1BD094CD00FF6448 /* FindMeTests */,
+				961AFB991BD094CD00FF6448 /* FindMeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		961AFB741BD094CD00FF6448 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				961AFB891BD094CD00FF6448 /* LaunchScreen.storyboard in Resources */,
+				961AFB861BD094CD00FF6448 /* Assets.xcassets in Resources */,
+				961AFB841BD094CD00FF6448 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		961AFB8D1BD094CD00FF6448 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		961AFB981BD094CD00FF6448 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		961AFB721BD094CD00FF6448 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				961AFB811BD094CD00FF6448 /* ViewController.m in Sources */,
+				961AFB7E1BD094CD00FF6448 /* AppDelegate.m in Sources */,
+				961AFB7B1BD094CD00FF6448 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		961AFB8B1BD094CD00FF6448 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				961AFB941BD094CD00FF6448 /* FindMeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		961AFB961BD094CD00FF6448 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				961AFB9F1BD094CD00FF6448 /* FindMeUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		961AFB911BD094CD00FF6448 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 961AFB751BD094CD00FF6448 /* FindMe */;
+			targetProxy = 961AFB901BD094CD00FF6448 /* PBXContainerItemProxy */;
+		};
+		961AFB9C1BD094CD00FF6448 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 961AFB751BD094CD00FF6448 /* FindMe */;
+			targetProxy = 961AFB9B1BD094CD00FF6448 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		961AFB821BD094CD00FF6448 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				961AFB831BD094CD00FF6448 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		961AFB871BD094CD00FF6448 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				961AFB881BD094CD00FF6448 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		961AFBA11BD094CD00FF6448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		961AFBA21BD094CD00FF6448 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		961AFBA41BD094CD00FF6448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = FindMe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JasonBadua.FindMe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		961AFBA51BD094CD00FF6448 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = FindMe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JasonBadua.FindMe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		961AFBA71BD094CD00FF6448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FindMeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JasonBadua.FindMeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FindMe.app/FindMe";
+			};
+			name = Debug;
+		};
+		961AFBA81BD094CD00FF6448 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FindMeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JasonBadua.FindMeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FindMe.app/FindMe";
+			};
+			name = Release;
+		};
+		961AFBAA1BD094CD00FF6448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = FindMeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JasonBadua.FindMeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = FindMe;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		961AFBAB1BD094CD00FF6448 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = FindMeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JasonBadua.FindMeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = FindMe;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		961AFB711BD094CD00FF6448 /* Build configuration list for PBXProject "FindMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				961AFBA11BD094CD00FF6448 /* Debug */,
+				961AFBA21BD094CD00FF6448 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		961AFBA31BD094CD00FF6448 /* Build configuration list for PBXNativeTarget "FindMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				961AFBA41BD094CD00FF6448 /* Debug */,
+				961AFBA51BD094CD00FF6448 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		961AFBA61BD094CD00FF6448 /* Build configuration list for PBXNativeTarget "FindMeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				961AFBA71BD094CD00FF6448 /* Debug */,
+				961AFBA81BD094CD00FF6448 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		961AFBA91BD094CD00FF6448 /* Build configuration list for PBXNativeTarget "FindMeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				961AFBAA1BD094CD00FF6448 /* Debug */,
+				961AFBAB1BD094CD00FF6448 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 961AFB6E1BD094CD00FF6448 /* Project object */;
+}
